@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+
+html,
+body {
+  @apply h-full bg-w-yellow-lightest;
+}
+
+#gatsby-focus-wrapper,
+#___gatsby {
+  @apply h-full;
+}
