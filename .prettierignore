@@ -1,0 +1,18 @@
+# Ignore Gatsby build directories
+public/
+.cache/
+static/
+
+# Ignore node_modules (optional, as it's commonly ignored in .gitignore)
+node_modules/
+
+# Ignore files generated during development
+db.json
+.env.development
+.env.production
+
+# Ignore Netlify files (if applicable)
+netlify.toml
+
+# Ignore various Gatsby files
+gatsby-*.js
