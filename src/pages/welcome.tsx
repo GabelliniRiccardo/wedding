@@ -2,10 +2,11 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Typography } from '@mui/material'
 import { useLocation } from '@reach/router'
-import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
 import Layout from '../components/Layout/Layout'
+import { navigate } from 'gatsby'
 
+const writingSpeed = 20
 const Welcome = () => {
   const location = useLocation()
   const [usernames, setUsernames] = useState<string[]>([])
@@ -19,6 +20,18 @@ const Welcome = () => {
       setUsernames(parsedUsernames)
     }
   }, [location.search])
+
+  useEffect(() => {
+    if (usernames.length > 0) {
+      const animationDuration =
+        generateWelcomeMessage().length * writingSpeed * 7 // Assuming each character takes 20ms to animate and 7 seconds to be written
+      const timeoutId = setTimeout(() => {
+        navigate('/')
+      }, animationDuration)
+
+      return () => clearTimeout(timeoutId)
+    }
+  }, [usernames.length])
 
   const generateWelcomeMessage = () => {
     if (usernames.length === 0) {
@@ -53,7 +66,7 @@ const Welcome = () => {
                   }}
                   sequence={[generateWelcomeMessage()]}
                   wrapper="div"
-                  speed={20}
+                  speed={writingSpeed}
                   repeat={0}
                   cursor={false}
                 />
