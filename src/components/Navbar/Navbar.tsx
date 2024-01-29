@@ -97,7 +97,7 @@ const Navbar: React.FC = () => {
                   {menuItems.map((item, index) => (
                     <ScrollLink
                       key={index}
-                      className="py-2 cursor-pointer"
+                      className="py-2 cursor-pointer text-right"
                       onClick={() => {
                         handleMenuClose()
                       }}
