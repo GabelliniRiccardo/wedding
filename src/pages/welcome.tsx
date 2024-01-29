@@ -1,6 +1,6 @@
 // src/components/Welcome.js
 import React, { useEffect, useState } from 'react'
-import { Container, CssBaseline, Typography } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import { useLocation } from '@reach/router' // Import useLocation from @reach/router
 import Layout from '../components/Layout/Layout'
 import { TypeAnimation } from 'react-type-animation'
@@ -24,7 +24,14 @@ const Welcome = () => {
       throw new Error('Usernames are not defined!')
     }
 
-    return `Ciao ${usernames.join(', ')},\nBenvenuti!`
+    if (usernames.length === 1) {
+      return `Ciao ${usernames[0]},\nBenvenuto`
+    }
+
+    const lastUsername = usernames[usernames.length - 1]
+    const penultimateNames = usernames.slice(0, -1).join(', ')
+
+    return `Ciao ${penultimateNames} e ${lastUsername},\nBenvenuti!`
   }
 
   return (
@@ -39,6 +46,10 @@ const Welcome = () => {
             {usernames.length && (
               <div className="flex flex-col justify-end">
                 <TypeAnimation
+                  style={{
+                    whiteSpace: 'pre-line',
+                    display: 'block',
+                  }}
                   sequence={[generateWelcomeMessage()]}
                   wrapper="div"
                   speed={20}
