@@ -34,7 +34,7 @@ const Layout: React.FC<{ children: ReactNode; showNavbar: boolean }> = ({
           className="h-full"
         >
           {showNavbar && <Navbar />}
-          <main className={`min-h-full${showNavbar ? ' mt-20' : ''}`}>
+          <main className={`min-h-full ${showNavbar ? 'mt-20' : ''}`}>
             {children}
           </main>
           <Footer />
