@@ -1,4 +1,3 @@
-// Navbar.tsx
 import React, { Fragment, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
@@ -6,6 +5,7 @@ import {
   Container,
   IconButton,
   Toolbar,
+  Typography,
   useMediaQuery,
   useTheme,
 } from '@mui/material'
@@ -13,12 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import CloseIcon from '@mui/icons-material/Close'
 import { Link as ScrollLink } from 'react-scroll'
 
-interface MenuItem {
-  label: string
-  target: string
-}
-
-const menuItems: MenuItem[] = [
+const menuItems = [
   { label: 'Dove e Quando', target: 'when-and-where-section' },
   { label: 'Come darci un regalo', target: 'how-to-give-us-a-present-section' },
   { label: 'Conferma', target: 'confirm-presence-section' },
@@ -43,7 +38,9 @@ const Navbar: React.FC = () => {
     <Fragment>
       <AppBar position="fixed">
         <Toolbar className="flex justify-between items-center">
-          <h1>Riccardo & Chiara</h1>
+          <Typography variant="h4" fontFamily="LovedbytheKingRegular">
+            Riccardo & Chiara
+          </Typography>
           {!isMobile && (
             <div className="flex justify-center items-center gap-4">
               {menuItems.map((item, index) => (
@@ -56,7 +53,13 @@ const Navbar: React.FC = () => {
                   spy={true}
                   activeClass="active"
                 >
-                  <span className="cursor-pointer">{item.label}</span>
+                  <Typography
+                    variant="subtitle1"
+                    className="cursor-pointer"
+                    fontFamily="MenuFont"
+                  >
+                    {item.label}
+                  </Typography>
                 </ScrollLink>
               ))}
             </div>
@@ -108,7 +111,9 @@ const Navbar: React.FC = () => {
                       spy={true}
                       activeClass="active"
                     >
-                      {item.label}
+                      <Typography variant="subtitle1" fontFamily="MenuFont">
+                        {item.label}
+                      </Typography>
                     </ScrollLink>
                   ))}
                 </div>

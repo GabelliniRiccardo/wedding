@@ -7,6 +7,13 @@
 @import '@fontsource/roboto/500.css';
 @import '@fontsource/roboto/700.css';
 
+@font-face {
+  font-family: 'LovedbytheKingRegular';
+  src: url('../fonts/LovedbytheKing-Regular.ttf') format('truetype');
+  font-weight: auto;
+  font-style: normal;
+}
+
 html,
 body {
   @apply h-full bg-w-yellow-lightest;
