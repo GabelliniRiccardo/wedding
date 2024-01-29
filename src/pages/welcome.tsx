@@ -1,12 +1,13 @@
 // src/components/Welcome.js
 import React, { useEffect, useState } from 'react'
 import { Container, Typography } from '@mui/material'
-import { useLocation } from '@reach/router' // Import useLocation from @reach/router
-import Layout from '../components/Layout/Layout'
+import { useLocation } from '@reach/router'
+import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
+import Layout from '../components/Layout/Layout'
 
 const Welcome = () => {
-  const location = useLocation() // Use useLocation from @reach/router
+  const location = useLocation()
   const [usernames, setUsernames] = useState<string[]>([])
 
   useEffect(() => {
@@ -37,13 +38,13 @@ const Welcome = () => {
   return (
     <Layout showNavbar={false}>
       <Container>
-        <div className="h-screen flex mt-40 sm:mt-0 items-start sm:items-center justify-center text-center">
-          <Typography
-            component="h1"
-            variant="h1"
-            style={{ fontFamily: 'LovedbytheKingRegular' }}
-          >
-            {usernames.length && (
+        {usernames.length && (
+          <div className="h-screen flex mt-40 sm:mt-0 items-start sm:items-center justify-center text-center">
+            <Typography
+              component="h1"
+              variant="h1"
+              style={{ fontFamily: 'LovedbytheKingRegular' }}
+            >
               <div className="flex flex-col justify-end">
                 <TypeAnimation
                   style={{
@@ -57,9 +58,9 @@ const Welcome = () => {
                   cursor={false}
                 />
               </div>
-            )}
-          </Typography>
-        </div>
+            </Typography>
+          </div>
+        )}
       </Container>
     </Layout>
   )
