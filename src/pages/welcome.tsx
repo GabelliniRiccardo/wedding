@@ -1,6 +1,5 @@
 // src/components/Welcome.js
 import React, { useEffect, useState } from 'react'
-import { Container, Typography } from '@mui/material'
 import { useLocation } from '@reach/router'
 import { motion } from 'framer-motion'
 import Layout from '../components/Layout/Layout'
@@ -63,7 +62,7 @@ const Welcome = () => {
   return (
     <Layout showNavbar={false}>
       {usernames.length && (
-        <div className="h-full overflow-y-scroll flex flex-col mt-40 sm:mt-0 items-start sm:items-center justify-center text-center">
+        <div className="h-full flex flex-col mt-40 sm:mt-0 items-start sm:items-center justify-center text-center">
           <motion.div
             initial="hidden"
             animate="visible"
