@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
 
   return (
     <Fragment>
-      <AppBar position="fixed">
+      <AppBar position="sticky">
         <Toolbar className="flex justify-between items-center">
           <Typography variant="h4" fontFamily="LovedbytheKingRegular">
             Riccardo & Chiara

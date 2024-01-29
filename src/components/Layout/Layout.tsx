@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from '../Navbar/Navbar'
 import Footer from '../Footer/Footer'
-import { createTheme, ThemeProvider } from '@mui/material'
+import { Container, createTheme, ThemeProvider } from '@mui/material'
 
 // Define your custom theme
 const customTheme = createTheme({
@@ -23,24 +23,24 @@ const Layout: React.FC<{ children: ReactNode; showNavbar: boolean }> = ({
   showNavbar: boolean
 }) => {
   return (
-    <ThemeProvider theme={customTheme}>
-      <AnimatePresence>
-        <motion.div
-          key="layout"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 2, ease: 'easeInOut' }}
-          className="h-full"
-        >
+    <AnimatePresence>
+      <motion.div
+        key="layout"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 2, ease: 'easeInOut' }}
+        className="h-full"
+      >
+        <ThemeProvider theme={customTheme}>
           {showNavbar && <Navbar />}
-          <main className={`min-h-full ${showNavbar ? 'mt-20' : ''}`}>
-            {children}
+          <main className="min-h-full mt-4 sm:mt16">
+            <Container>{children}</Container>
           </main>
           <Footer />
-        </motion.div>
-      </AnimatePresence>
-    </ThemeProvider>
+        </ThemeProvider>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 

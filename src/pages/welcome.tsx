@@ -51,31 +51,29 @@ const Welcome = () => {
 
   return (
     <Layout showNavbar={false}>
-      <Container>
-        {usernames.length && (
-          <div className="h-screen flex mt-40 sm:mt-0 items-start sm:items-center justify-center text-center">
-            <Typography
-              component="h1"
-              variant="h1"
-              style={{ fontFamily: 'LovedbytheKingRegular' }}
-            >
-              <div className="flex flex-col justify-end">
-                <TypeAnimation
-                  style={{
-                    whiteSpace: 'pre-line',
-                    display: 'block',
-                  }}
-                  sequence={[generateWelcomeMessage()]}
-                  wrapper="div"
-                  speed={writingSpeed}
-                  repeat={0}
-                  cursor={false}
-                />
-              </div>
-            </Typography>
-          </div>
-        )}
-      </Container>
+      {usernames.length && (
+        <div className="h-screen flex mt-40 sm:mt-0 items-start sm:items-center justify-center text-center">
+          <Typography
+            component="h1"
+            variant="h1"
+            style={{ fontFamily: 'LovedbytheKingRegular' }}
+          >
+            <div className="flex flex-col justify-end">
+              <TypeAnimation
+                style={{
+                  whiteSpace: 'pre-line',
+                  display: 'block',
+                }}
+                sequence={[generateWelcomeMessage()]}
+                wrapper="div"
+                speed={writingSpeed}
+                repeat={0}
+                cursor={false}
+              />
+            </div>
+          </Typography>
+        </div>
+      )}
     </Layout>
   )
 }
