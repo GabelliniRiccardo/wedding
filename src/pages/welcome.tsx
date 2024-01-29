@@ -21,35 +21,38 @@ const Welcome = () => {
 
   const generateWelcomeMessage = () => {
     if (usernames.length === 0) {
-      console.error('usernames not found!')
-      return 'Hello'
+      throw new Error('Usernames are not defined!')
     }
 
-    return `Hello ${usernames.join(', ')},`
+    return `Ciao ${usernames.join(', ')},`
   }
 
   return (
     <Layout>
       <Container>
-        <div className="h-screen flex items-center justify-center">
+        <div className="h-screen flex items-center justify-center text-center">
           <Typography
             component="h1"
-            variant="h5"
-            style={{ fontFamily: 'YourDesiredFont' }}
+            variant="h1"
+            style={{ fontFamily: 'LovedbytheKingRegular' }}
           >
             {usernames.length && (
-              <TypeAnimation
-                sequence={[
-                  generateWelcomeMessage(),
-                  1000,
-                  'Welcome to our wedding!',
-                  1000,
-                ]}
-                wrapper="span"
-                speed={50}
-                style={{ fontSize: '2em', display: 'inline-block' }}
-                repeat={Infinity}
-              />
+              <div className="flex flex-col justify-end">
+                <TypeAnimation
+                  sequence={[generateWelcomeMessage()]}
+                  wrapper="div"
+                  speed={20}
+                  repeat={0}
+                  cursor={false}
+                />
+                <TypeAnimation
+                  sequence={['Benvenuti!']}
+                  wrapper="div"
+                  speed={20}
+                  repeat={0}
+                  cursor={false}
+                />
+              </div>
             )}
           </Typography>
         </div>
