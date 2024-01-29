@@ -5,7 +5,7 @@ import Layout from '../components/Layout/Layout'
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
-    <Layout>
+    <Layout showNavbar={true}>
       <Container>
         <section id="when-and-where-section">
           <h2 className="text-2xl">Dove e Quando</h2>

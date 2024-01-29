@@ -15,10 +15,12 @@ const customTheme = createTheme({
   },
 })
 
-const Layout: React.FC<{ children: ReactNode }> = ({
+const Layout: React.FC<{ children: ReactNode; showNavbar: boolean }> = ({
   children,
+  showNavbar,
 }: {
   children: ReactNode
+  showNavbar: boolean
 }) => {
   return (
     <ThemeProvider theme={customTheme}>
@@ -30,8 +32,10 @@ const Layout: React.FC<{ children: ReactNode }> = ({
         transition={{ duration: 0.5, ease: 'easeInOut' }}
         className="h-full"
       >
-        <Navbar />
-        <main className="mt-20 min-h-full">{children}</main>
+        {showNavbar && <Navbar />}
+        <main className={`min-h-full${showNavbar ? ' mt-20' : ''}`}>
+          {children}
+        </main>
         <Footer />
       </motion.div>
     </ThemeProvider>

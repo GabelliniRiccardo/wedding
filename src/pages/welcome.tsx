@@ -24,13 +24,13 @@ const Welcome = () => {
       throw new Error('Usernames are not defined!')
     }
 
-    return `Ciao ${usernames.join(', ')},`
+    return `Ciao ${usernames.join(', ')},\nBenvenuti!`
   }
 
   return (
-    <Layout>
+    <Layout showNavbar={false}>
       <Container>
-        <div className="h-screen flex items-center justify-center text-center">
+        <div className="h-screen flex mt-40 sm:mt-0 items-start sm:items-center justify-center text-center">
           <Typography
             component="h1"
             variant="h1"
@@ -40,13 +40,6 @@ const Welcome = () => {
               <div className="flex flex-col justify-end">
                 <TypeAnimation
                   sequence={[generateWelcomeMessage()]}
-                  wrapper="div"
-                  speed={20}
-                  repeat={0}
-                  cursor={false}
-                />
-                <TypeAnimation
-                  sequence={['Benvenuti!']}
                   wrapper="div"
                   speed={20}
                   repeat={0}
