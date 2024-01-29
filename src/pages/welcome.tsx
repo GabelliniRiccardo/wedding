@@ -25,8 +25,9 @@ const Welcome = () => {
     if (usernames.length > 0) {
       const animationDuration =
         generateWelcomeMessage().length * writingSpeed * 7 // Assuming each character takes 20ms to animate and 7 seconds to be written
-      const timeoutId = setTimeout(() => {
-        navigate('/')
+
+      const timeoutId = setTimeout(async () => {
+        await navigate('/')
       }, animationDuration)
 
       return () => clearTimeout(timeoutId)
