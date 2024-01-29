@@ -20,8 +20,8 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   { label: 'Dove e Quando', target: 'when-and-where-section' },
-  { label: 'Come darci un regalo', target: 'how-to-contribute' },
-  { label: 'Conferma', target: 'confirm-section' },
+  { label: 'Come darci un regalo', target: 'how-to-give-us-a-present-section' },
+  { label: 'Conferma', target: 'confirm-presence-section' },
 ]
 
 const Navbar: React.FC = () => {
@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
   return (
     <Fragment>
       <AppBar position="fixed">
-        <Toolbar className="flex-grow-1 flex justify-between items-center">
+        <Toolbar className="flex justify-between items-center">
           <h1>Riccardo & Chiara</h1>
           {!isMobile && (
             <div className="flex justify-center items-center gap-4">

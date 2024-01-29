@@ -7,21 +7,19 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <Layout>
       <Container>
-        <Typography variant="h1" id="home-section">
-          Il nostro Matrimonio
-        </Typography>
-        <Typography variant="subtitle1">
-          Unisciti a noi per celebrare questo giorno speciale
-        </Typography>
-
         <section id="when-and-where-section">
-          <Typography variant="h2">Dove e Quando</Typography>
-          <Typography variant="body1">Data e Ora del Matrimonio</Typography>
+          <h2 className="text-2xl">Dove e Quando</h2>
+          <p>Data e Ora del Matrimonio</p>
         </section>
 
-        <section id="location-section">
-          <Typography variant="h2">Luogo</Typography>
-          {/* Aggiungi la mappa di Google Maps qui */}
+        <section id="how-to-give-us-a-present-section">
+          <h2 className="text-2xl">Come Darci un Regalo</h2>
+          <p>informazioni su iban ecc</p>
+        </section>
+
+        <section id="confirm-presence-section">
+          <h2 className="text-2xl">Conferma presenza</h2>
+          <p>Form per inserire conferma</p>
         </section>
       </Container>
     </Layout>

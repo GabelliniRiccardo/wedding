@@ -31,7 +31,7 @@ const Layout: React.FC<{ children: ReactNode }> = ({
         className="h-full"
       >
         <Navbar />
-        <div className="mt-14 min-h-full">{children}</div>
+        <main className="mt-20 min-h-full">{children}</main>
         <Footer />
       </motion.div>
     </ThemeProvider>
