@@ -69,7 +69,7 @@ const Welcome = () => {
 
   return (
     <Layout showNavbar={false}>
-      <div className="h-full flex flex-col mt-40 sm:mt-0 items-start sm:items-center justify-center text-center">
+      <div className="h-full flex flex-col sm:mt-0 items-start sm:items-center justify-center text-center">
         {usernames.length && (
           <motion.div
             initial="hidden"
@@ -98,7 +98,7 @@ const Welcome = () => {
           initial={{ opacity: 0 }}
           animate={isWeMarryInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1, ease: 'easeInOut' }}
-          className="flex flex-col justify-center h-screen"
+          className="flex flex-col justify-center min-h-screen"
         >
           {isWeMarryInView && (
             <TypeAnimation
