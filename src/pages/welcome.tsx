@@ -7,6 +7,7 @@ import { TypeAnimation } from 'react-type-animation'
 import { ArrowDownwardSharp } from '@mui/icons-material'
 
 import rings from '../images/rings.jpg'
+import handToHand from '../images/hand-to-hand.jpeg'
 
 const writingSpeed = 20
 
@@ -72,14 +73,10 @@ const Welcome = () => {
 
   return (
     <Layout showNavbar={false}>
-      <div className="h-full flex flex-col sm:mt-0 items-start sm:items-center justify-center text-center">
+      <div className="h-full flex flex-col sm:mt-0 items-center justify-center text-center">
         {usernames.length && (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={variants}
-            transition={{ ease: 'easeIn', duration: 0.8 }}
-            className="flex flex-col justify-center items-center min-h-screen w-full"
+          <div
+            className="relative w-full"
             style={{
               backgroundImage: `url(${rings})`,
               backgroundSize: 'cover',
@@ -87,50 +84,68 @@ const Welcome = () => {
             }}
           >
             <div className="absolute inset-0 bg-opacity-50 bg-white"></div>
-            <TypeAnimation
-              style={{
-                whiteSpace: 'pre-line',
-                fontFamily: 'LovedbytheKingRegular',
-              }}
-              className="text-7xl z-50"
-              sequence={[generateWelcomeMessage()]}
-              wrapper="div"
-              speed={writingSpeed}
-              repeat={0}
-              cursor={false}
-            />
-          </motion.div>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={variants}
+              transition={{ ease: 'easeIn', duration: 0.8 }}
+              className="flex flex-col justify-center items-center min-h-screen w-full"
+            >
+              <TypeAnimation
+                style={{
+                  whiteSpace: 'pre-line',
+                  fontFamily: 'LovedbytheKingRegular',
+                }}
+                className="text-7xl z-50"
+                sequence={[generateWelcomeMessage()]}
+                wrapper="div"
+                speed={writingSpeed}
+                repeat={0}
+                cursor={false}
+              />
+            </motion.div>
+          </div>
         )}
 
         {!isWeMarryInView && (
           <ArrowDownwardSharp
-            className="fixed h-64 bottom-0 animate-bounce "
+            className="fixed h-64 bottom-0 animate-bounce text-center"
             fontSize="large"
           />
         )}
 
-        <motion.div
-          ref={weMarryElementRef}
-          initial={{ opacity: 0 }}
-          animate={isWeMarryInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1, ease: 'easeInOut' }}
-          className="flex flex-col justify-center min-h-screen"
+        <div
+          className="relative w-full"
+          style={{
+            backgroundImage: `url(${handToHand})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
         >
-          {isWeMarryInView && (
-            <TypeAnimation
-              style={{
-                whiteSpace: 'pre-line',
-                fontFamily: 'LovedbytheKingRegular',
-              }}
-              className="text-7xl"
-              sequence={['Finalmente Ci Sposiamo!']}
-              wrapper="div"
-              speed={writingSpeed}
-              repeat={0}
-              cursor={false}
-            />
-          )}
-        </motion.div>
+          <div className="absolute inset-0 bg-opacity-50 bg-white"></div>
+          <motion.div
+            ref={weMarryElementRef}
+            initial={{ opacity: 0 }}
+            animate={isWeMarryInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 1, ease: 'easeInOut' }}
+            className="flex flex-col justify-center items-center min-h-screen w-full"
+          >
+            {isWeMarryInView && (
+              <TypeAnimation
+                style={{
+                  whiteSpace: 'pre-line',
+                  fontFamily: 'LovedbytheKingRegular',
+                }}
+                className="text-7xl z-50"
+                sequence={['Finalmente Ci Sposiamo!']}
+                wrapper="div"
+                speed={writingSpeed}
+                repeat={0}
+                cursor={false}
+              />
+            )}
+          </motion.div>
+        </div>
       </div>
     </Layout>
   )
