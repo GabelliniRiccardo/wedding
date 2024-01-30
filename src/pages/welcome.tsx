@@ -4,6 +4,7 @@ import { useLocation } from '@reach/router'
 import { motion, useInView } from 'framer-motion'
 import Layout from '../components/Layout/Layout'
 import { TypeAnimation } from 'react-type-animation'
+import { ArrowDownwardSharp } from '@mui/icons-material'
 
 const writingSpeed = 20
 
@@ -76,7 +77,7 @@ const Welcome = () => {
             animate="visible"
             variants={variants}
             transition={{ ease: 'easeOut', duration: 0.8 }}
-            className="flex flex-col justify-center min-h-screen"
+            className="flex flex-col justify-center items-center min-h-screen"
           >
             <TypeAnimation
               style={{
@@ -91,6 +92,13 @@ const Welcome = () => {
               cursor={false}
             />
           </motion.div>
+        )}
+
+        {!isWeMarryInView && (
+          <ArrowDownwardSharp
+            className="fixed h-64 bottom-0 animate-bounce "
+            fontSize="large"
+          />
         )}
 
         <motion.div
