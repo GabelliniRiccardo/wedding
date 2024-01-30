@@ -6,6 +6,8 @@ import Layout from '../components/Layout/Layout'
 import { TypeAnimation } from 'react-type-animation'
 import { ArrowDownwardSharp } from '@mui/icons-material'
 
+import rings from '../images/rings.jpg'
+
 const writingSpeed = 20
 
 const Welcome = () => {
@@ -76,15 +78,21 @@ const Welcome = () => {
             initial="hidden"
             animate="visible"
             variants={variants}
-            transition={{ ease: 'easeOut', duration: 0.8 }}
-            className="flex flex-col justify-center items-center min-h-screen"
+            transition={{ ease: 'easeIn', duration: 0.8 }}
+            className="flex flex-col justify-center items-center min-h-screen w-full"
+            style={{
+              backgroundImage: `url(${rings})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
           >
+            <div className="absolute inset-0 bg-opacity-50 bg-white"></div>
             <TypeAnimation
               style={{
                 whiteSpace: 'pre-line',
                 fontFamily: 'LovedbytheKingRegular',
               }}
-              className="text-7xl"
+              className="text-7xl z-50"
               sequence={[generateWelcomeMessage()]}
               wrapper="div"
               speed={writingSpeed}
