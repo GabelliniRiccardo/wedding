@@ -8,6 +8,8 @@ import { ArrowDownwardSharp } from '@mui/icons-material'
 
 import rings from '../images/rings.jpg'
 import handToHand from '../images/hand-to-hand.jpeg'
+import { Link } from 'gatsby'
+import { Button } from '@mui/material'
 
 const writingSpeed = 20
 
@@ -16,7 +18,7 @@ const Welcome = () => {
   const [usernames, setUsernames] = useState<string[]>([])
   const weMarryElementRef = useRef(null)
   const isWeMarryInView = useInView(weMarryElementRef, {
-    margin: '0px 0px -90% 0px',
+    margin: '0px 0px -60% 0px',
     once: true,
   })
 
@@ -53,23 +55,6 @@ const Welcome = () => {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0 },
   }
-
-  const handleScroll = () => {
-    const windowHeight = window.innerHeight
-    const documentHeight = document.documentElement.scrollHeight
-    const currentScroll = window.scrollY
-
-    const isScrolledToBottom = currentScroll + windowHeight >= documentHeight
-
-    if (isScrolledToBottom && usernames.length > 0) {
-      // navigate('/')
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [usernames.length])
 
   return (
     <Layout showNavbar={false}>
@@ -131,18 +116,33 @@ const Welcome = () => {
             className="flex flex-col justify-center items-center min-h-screen w-full"
           >
             {isWeMarryInView && (
-              <TypeAnimation
-                style={{
-                  whiteSpace: 'pre-line',
-                  fontFamily: 'LovedbytheKingRegular',
-                }}
-                className="text-7xl z-50"
-                sequence={['Finalmente Ci Sposiamo!']}
-                wrapper="div"
-                speed={writingSpeed}
-                repeat={0}
-                cursor={false}
-              />
+              <div className="z-50 flex flex-col gap-40">
+                <TypeAnimation
+                  style={{
+                    whiteSpace: 'pre-line',
+                    fontFamily: 'LovedbytheKingRegular',
+                  }}
+                  className="text-7xl"
+                  sequence={['Finalmente Ci Sposiamo!']}
+                  wrapper="div"
+                  speed={writingSpeed}
+                  repeat={0}
+                  cursor={false}
+                />
+                <Link to="/">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    style={{
+                      fontFamily: 'LovedbytheKingRegular',
+                      fontSize: 33,
+                    }}
+                  >
+                    Dettagli
+                  </Button>
+                </Link>
+              </div>
             )}
           </motion.div>
         </div>
