@@ -1,6 +1,5 @@
 import * as React from 'react'
 import type { HeadFC, PageProps } from 'gatsby'
-import { Container } from '@mui/material'
 import Layout from '../components/Layout/Layout'
 
 const IndexPage: React.FC<PageProps> = () => {
