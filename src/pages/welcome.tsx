@@ -1,9 +1,8 @@
 // src/components/Welcome.js
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useLocation } from '@reach/router'
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import Layout from '../components/Layout/Layout'
-import { navigate } from 'gatsby'
 import { TypeAnimation } from 'react-type-animation'
 
 const writingSpeed = 20
@@ -11,6 +10,11 @@ const writingSpeed = 20
 const Welcome = () => {
   const location = useLocation()
   const [usernames, setUsernames] = useState<string[]>([])
+  const weMarryElementRef = useRef(null)
+  const isWeMarryInView = useInView(weMarryElementRef, {
+    margin: '0px 0px -90% 0px',
+    once: true,
+  })
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search)
@@ -21,6 +25,10 @@ const Welcome = () => {
       setUsernames(parsedUsernames)
     }
   }, [location.search])
+
+  useEffect(() => {
+    console.log('is in view: ', isWeMarryInView)
+  }, [isWeMarryInView])
 
   const generateWelcomeMessage = () => {
     if (usernames.length === 0) {
@@ -50,7 +58,7 @@ const Welcome = () => {
     const isScrolledToBottom = currentScroll + windowHeight >= documentHeight
 
     if (isScrolledToBottom && usernames.length > 0) {
-      navigate('/')
+      // navigate('/')
     }
   }
 
@@ -61,14 +69,14 @@ const Welcome = () => {
 
   return (
     <Layout showNavbar={false}>
-      {usernames.length && (
-        <div className="h-full flex flex-col mt-40 sm:mt-0 items-start sm:items-center justify-center text-center">
+      <div className="h-full flex flex-col mt-40 sm:mt-0 items-start sm:items-center justify-center text-center">
+        {usernames.length && (
           <motion.div
             initial="hidden"
             animate="visible"
             variants={variants}
             transition={{ ease: 'easeOut', duration: 0.8 }}
-            className="flex flex-col justify-center h-screen"
+            className="flex flex-col justify-center min-h-screen"
           >
             <TypeAnimation
               style={{
@@ -83,14 +91,16 @@ const Welcome = () => {
               cursor={false}
             />
           </motion.div>
+        )}
 
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={variants}
-            transition={{ ease: 'easeOut', duration: 0.8 }}
-            className="flex flex-col justify-center h-screen"
-          >
+        <motion.div
+          ref={weMarryElementRef}
+          initial={{ opacity: 0 }}
+          animate={isWeMarryInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 1, ease: 'easeInOut' }}
+          className="flex flex-col justify-center h-screen"
+        >
+          {isWeMarryInView && (
             <TypeAnimation
               style={{
                 whiteSpace: 'pre-line',
@@ -103,9 +113,9 @@ const Welcome = () => {
               repeat={0}
               cursor={false}
             />
-          </motion.div>
-        </div>
-      )}
+          )}
+        </motion.div>
+      </div>
     </Layout>
   )
 }
