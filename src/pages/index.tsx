@@ -37,7 +37,7 @@ const IndexPage: React.FC<PageProps> = () => {
         }}
       >
         <div className="container mx-auto my-8 px-1 px-md-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <WhenAndWhere />
 
             <div className="lg:col-start-2 lg:row-start-2">
