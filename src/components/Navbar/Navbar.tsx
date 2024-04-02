@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
 
   return (
     <ThemeProvider theme={customTheme}>
-      <AppBar position="fixed">
+      <AppBar position="absolute">
         <Toolbar className="flex justify-between items-center">
           <Typography variant="h4" fontFamily="LovedbytheKingRegular">
             Riccardo & Chiara
