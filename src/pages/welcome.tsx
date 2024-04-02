@@ -44,6 +44,10 @@ const Welcome = () => {
     console.log('is in view: ', isWeMarryInView)
   }, [isWeMarryInView])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const generateWelcomeMessage = () => {
     if (usernames.length === 0) {
       throw new Error('Usernames are not defined!')
