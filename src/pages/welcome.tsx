@@ -142,7 +142,9 @@ const Welcome = () => {
                   repeat={0}
                   cursor={false}
                 />
-                <Link to="/">
+                <Link
+                  to={`/?participants=${encodeURIComponent(usernames.join(','))}`}
+                >
                   <Button
                     variant="contained"
                     color="primary"
