@@ -32,28 +32,13 @@ const IndexPage: React.FC<PageProps> = () => {
         </div>
       </motion.section>
 
-      <motion.section
-        className=" inset-0 overflow-y-auto bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${coupleImg})`,
-        }}
-      >
-        <div className="container mx-auto my-8 px-1 px-md-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <WhenAndWhere />
-
-            <div className="lg:col-start-2 lg:row-start-2">
-              <GoogleMaps />
-            </div>
-
-            <div className="lg:row-start-3">
-              <HowToGiveUsAPresent />
-            </div>
-          </div>
+      <div className="container mx-auto my-8 px-1 px-md-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          <WhenAndWhere />
+          <HowToGiveUsAPresent />
         </div>
-      </motion.section>
-
-      <RSVPForm></RSVPForm>
+        <RSVPForm></RSVPForm>
+      </div>
     </Layout>
   )
 }

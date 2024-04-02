@@ -16,7 +16,7 @@ const HowToGiveUsAPresent = () => {
   }
 
   return (
-    <div className="bg-yellow-100 p-6 rounded-lg shadow-lg">
+    <div className="bg-orange-600 bg-opacity-25 p-6 rounded-lg shadow-lg">
       <div className="flex flex-col justify-center items-center mb-8 text-lg gap-3">
         <h2 className="text-4xl font-bold mb-4 text-center">
           Come darci un regalo

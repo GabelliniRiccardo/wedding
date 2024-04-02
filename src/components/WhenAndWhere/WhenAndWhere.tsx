@@ -1,9 +1,10 @@
 import * as React from 'react'
 import gifImage from '../../images/pandas.gif'
+import GoogleMaps from '../GoogleMaps/GoogleMaps'
 
 const WhenAndWhere = () => {
   return (
-    <div className="bg-w-yellow-lighter p-6 rounded-lg shadow-lg">
+    <div className="bg-green-600 bg-opacity-25 p-6 rounded-lg shadow-lg">
       <h2
         className="text-4xl font-bold mb-4 text-center text-gray-800"
         id="when-and-where-section"
@@ -26,6 +27,10 @@ const WhenAndWhere = () => {
           </div>
           <img src={gifImage} alt="GIF" className="max-w-20 ml-auto" />
         </div>
+      </div>
+
+      <div className="mt-5">
+        <GoogleMaps />
       </div>
     </div>
   )
