@@ -4,7 +4,7 @@ import GoogleMaps from '../GoogleMaps/GoogleMaps'
 
 const WhenAndWhere = () => {
   return (
-    <div className="bg-green-600 bg-opacity-25 p-6 rounded-lg shadow-lg">
+    <div className="bg-green-600 bg-opacity-25 p-6 rounded-lg shadow-lg flex flex-col justify-between h-full">
       <h2
         className="text-4xl font-bold mb-4 text-center text-gray-800"
         id="when-and-where-section"
