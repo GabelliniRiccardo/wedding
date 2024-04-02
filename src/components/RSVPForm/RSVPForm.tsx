@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { ErrorMessage, Form, Formik } from 'formik'
 import * as Yup from 'yup'
-import { Button, Container, Modal, TextField, Typography } from '@mui/material'
+import {
+  Button,
+  CircularProgress,
+  Container,
+  Modal,
+  TextField,
+  Typography,
+} from '@mui/material'
 import queryString from 'query-string'
 import { useLocation } from '@reach/router'
+import emailjs from '@emailjs/browser'
 
 const validationSchema = Yup.object().shape({
   participants: Yup.array()
@@ -14,6 +22,9 @@ const validationSchema = Yup.object().shape({
 })
 
 const RSVPForm = () => {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+
   const location = useLocation()
   const [formValues, setFormValues] = useState({
     participants: [''],
@@ -38,10 +49,30 @@ const RSVPForm = () => {
     })
   }, [location.search])
 
-  const handleSubmit = (values, { resetForm }) => {
-    setShowSuccessModal(true)
-    setConfirmed(true)
-    localStorage.setItem('CONFIRMED', 'true')
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      setLoading(true) // Attiva lo stato di caricamento
+
+      await emailjs.send(
+        process.env.GATSBY_EMAILJS_SERVICE_ID!,
+        process.env.GATSBY_EMAILJS_CONTACT_ME_TEMPLATE_ID!,
+        {
+          to_email: 'gabelliniriccardo.94@gmail.com',
+          participants: values.participants.join(', '),
+          message: values.message,
+        },
+        process.env.GATSBY_EMAILJS_PUBLIC_KEY!,
+      )
+
+      setShowSuccessModal(true)
+      setConfirmed(true)
+      localStorage.setItem('CONFIRMED', 'true')
+    } catch (error) {
+      console.error("Errore nell'invio dell'email:", error)
+      setError(error.message || "Si è verificato un errore durante l'invio.")
+    } finally {
+      setLoading(false) // Disattiva lo stato di caricamento indipendentemente dall'esito
+    }
   }
 
   return (
@@ -56,7 +87,7 @@ const RSVPForm = () => {
           enableReinitialize
           onSubmit={handleSubmit}
         >
-          {({ values, handleChange }) => (
+          {({ values, handleChange, isValid }) => (
             <Form>
               {values.participants.map((participant, index) => (
                 <div key={index} className="mt-4">
@@ -134,9 +165,23 @@ const RSVPForm = () => {
               />
 
               <div className="flex justify-center mt-4">
-                <Button type="submit" variant="contained" color="primary">
-                  Invia
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disabled={!isValid || loading} // Disabilita il pulsante durante il caricamento
+                >
+                  {loading ? (
+                    <CircularProgress size={24} color="inherit" />
+                  ) : (
+                    'Invia'
+                  )}
                 </Button>
+                {error && (
+                  <div className="text-red-500 text-sm mt-2">
+                    Errore durante l'invio del form: {error}
+                  </div>
+                )}
               </div>
             </Form>
           )}
