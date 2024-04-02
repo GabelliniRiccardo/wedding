@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { ErrorMessage, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import {
@@ -117,99 +117,118 @@ const RSVPForm = () => {
           onSubmit={handleSubmit}
         >
           {({ values, handleChange, isValid }) => (
-            <Form>
-              {values.participants.map((participant, index) => (
-                <div key={index}>
-                  <TextField
-                    type="text"
-                    name={`participants.${index}`}
-                    label="Partecipante"
-                    placeholder="Inserisci nome partecipante"
-                    value={participant}
-                    onChange={handleChange}
-                    fullWidth
-                  />
-                  <ErrorMessage
-                    name={`participants.${index}`}
-                    component="div"
-                    className="text-red-500 text-sm"
-                  />
-                  {values.participants.length > 1 && (
-                    <div className="flex items-center my-2">
-                      <Button
-                        type="button"
-                        onClick={() => {
-                          const updatedParticipants = [...values.participants]
-                          updatedParticipants.splice(index, 1)
-                          handleChange({
-                            target: {
-                              name: 'participants',
-                              value: updatedParticipants,
-                            },
-                          })
-                        }}
-                        variant="outlined"
-                        color="error"
-                      >
-                        Rimuovi
-                      </Button>
-                    </div>
-                  )}
-                </div>
-              ))}
+            <Fragment>
+              <div className="my-8">
+                {values.participants.length > 1 ? (
+                  <Typography variant="body1">
+                    La vostra presenza per noi è fondamentale, per questo vi
+                    chiediamo di confermarla di seguito
+                  </Typography>
+                ) : (
+                  <Typography variant="body1">
+                    La tua presenza per noi è fondamentale, per questo ti
+                    chiediamo di confermarla di seguito
+                  </Typography>
+                )}
 
-              {values.participants.length < 10 && (
-                <div className="flex items-center my-2">
+                <Typography variant="body1">
+                  Se ci siamo dimenticati qualcuno aggiungilo pure
+                </Typography>
+              </div>
+              <Form>
+                {values.participants.map((participant, index) => (
+                  <div key={index}>
+                    <TextField
+                      type="text"
+                      name={`participants.${index}`}
+                      label="Partecipante"
+                      placeholder="Inserisci nome partecipante"
+                      value={participant}
+                      onChange={handleChange}
+                      fullWidth
+                    />
+                    <ErrorMessage
+                      name={`participants.${index}`}
+                      component="div"
+                      className="text-red-500 text-sm"
+                    />
+                    {values.participants.length > 1 && (
+                      <div className="flex items-center my-2">
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            const updatedParticipants = [...values.participants]
+                            updatedParticipants.splice(index, 1)
+                            handleChange({
+                              target: {
+                                name: 'participants',
+                                value: updatedParticipants,
+                              },
+                            })
+                          }}
+                          variant="outlined"
+                          color="error"
+                        >
+                          Rimuovi
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+                {values.participants.length < 10 && (
+                  <div className="flex items-center my-2">
+                    <Button
+                      type="button"
+                      onClick={() =>
+                        handleChange({
+                          target: {
+                            name: 'participants',
+                            value: [...values.participants, ''],
+                          },
+                        })
+                      }
+                      variant="outlined"
+                      color="success"
+                      className="mt-2"
+                    >
+                      Aggiungi Partecipante
+                    </Button>
+                  </div>
+                )}
+
+                <TextField
+                  type="text"
+                  name="message"
+                  label="Messaggio"
+                  placeholder="Inserisci il messaggio"
+                  value={values.message}
+                  onChange={handleChange}
+                  fullWidth
+                  className="mt-4"
+                />
+                <ErrorMessage
+                  name="message"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
+
+                <div className="flex justify-center mt-4">
                   <Button
-                    type="button"
-                    onClick={() =>
-                      handleChange({
-                        target: {
-                          name: 'participants',
-                          value: [...values.participants, ''],
-                        },
-                      })
-                    }
-                    variant="outlined"
-                    color="success"
-                    className="mt-2"
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    disabled={!isValid || loading}
                   >
-                    Aggiungi Partecipante
+                    {loading ? (
+                      <CircularProgress size={24} color="inherit" />
+                    ) : (
+                      'Invia'
+                    )}
                   </Button>
                 </div>
-              )}
-
-              <TextField
-                type="text"
-                name="message"
-                label="Messaggio"
-                placeholder="Inserisci il messaggio"
-                value={values.message}
-                onChange={handleChange}
-                fullWidth
-                className="mt-4"
-              />
-              <ErrorMessage
-                name="message"
-                component="div"
-                className="text-red-500 text-sm"
-              />
-
-              <div className="flex justify-center mt-4">
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  disabled={!isValid || loading}
-                >
-                  {loading ? (
-                    <CircularProgress size={24} color="inherit" />
-                  ) : (
-                    'Invia'
-                  )}
-                </Button>
-              </div>
-            </Form>
+              </Form>
+            </Fragment>
           )}
         </Formik>
       )}

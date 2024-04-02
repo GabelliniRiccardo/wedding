@@ -30,7 +30,9 @@ const HowToGiveUsAPresent = () => {
           per effettuare un bonifico:
         </p>
         <div className="flex justify-between items-center">
-          <p>P.s. se si clicca l'IBAN viene automaticamente copiato</p>
+          <p className="mt-8">
+            P.s. se si clicca l'IBAN viene automaticamente copiato
+          </p>
           <img src={gifImage} alt="GIF" className="max-w-24" />
         </div>
         <div className="flex gap-1 mt-8">
