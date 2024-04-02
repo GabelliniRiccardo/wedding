@@ -3,7 +3,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import {
   AppBar,
   Container,
+  createTheme,
   IconButton,
+  ThemeProvider,
   Toolbar,
   Typography,
   useMediaQuery,
@@ -12,6 +14,15 @@ import {
 import MenuIcon from '@mui/icons-material/Menu'
 import CloseIcon from '@mui/icons-material/Close'
 import { Link as ScrollLink } from 'react-scroll'
+
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      main: 'rgba(255,132,132,0)',
+      contrastText: '#fff',
+    },
+  },
+})
 
 const menuItems = [
   { label: 'Dove e Quando', target: 'when-and-where-section' },
@@ -35,8 +46,8 @@ const Navbar: React.FC = () => {
   }
 
   return (
-    <Fragment>
-      <AppBar position="sticky">
+    <ThemeProvider theme={customTheme}>
+      <AppBar position="fixed">
         <Toolbar className="flex justify-between items-center">
           <Typography variant="h4" fontFamily="LovedbytheKingRegular">
             Riccardo & Chiara
@@ -90,10 +101,6 @@ const Navbar: React.FC = () => {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
               className="flex w-full rounded-b"
-              style={{
-                background: theme.palette.primary.main,
-                color: theme.palette.primary.contrastText,
-              }}
             >
               <Container>
                 <div className="flex flex-col gap-2">
@@ -122,7 +129,7 @@ const Navbar: React.FC = () => {
           )}
         </AnimatePresence>
       </AppBar>
-    </Fragment>
+    </ThemeProvider>
   )
 }
 

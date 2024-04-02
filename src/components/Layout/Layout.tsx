@@ -1,9 +1,10 @@
 // Layout.tsx
-import React, { ReactNode } from 'react'
+import React, { Fragment, ReactNode } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from '../Navbar/Navbar'
 import Footer from '../Footer/Footer'
-import { Container, createTheme, ThemeProvider } from '@mui/material'
+import { createTheme, ThemeProvider } from '@mui/material'
+import theme from 'tailwindcss/defaultTheme'
 
 // Define your custom theme
 const customTheme = createTheme({
