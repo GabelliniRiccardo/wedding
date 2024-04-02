@@ -4,12 +4,12 @@ const GOOGLE_MAPS_SRC = process.env.GOOGLE_MAPS_SRC
 
 const WhenAndWhere = () => {
   return (
-    <div
-      className="p-4 my-8 grid grid-cols-1 lg:grid-cols-2 gap-6"
-      id="when-and-where-section"
-    >
+    <div className="p-4 my-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div className="bg-w-yellow-lighter p-6 rounded-lg shadow-lg">
-        <h2 className="text-4xl font-bold mb-4 text-center text-gray-800">
+        <h2
+          className="text-4xl font-bold mb-4 text-center text-gray-800"
+          id="when-and-where-section"
+        >
           Dove e Quando
         </h2>
         <div className="flex flex-col space-y-4">

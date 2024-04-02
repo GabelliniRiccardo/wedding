@@ -35,7 +35,7 @@ const IndexPage: React.FC<PageProps> = () => {
           backgroundImage: `url(${coupleImg})`,
         }}
       >
-        <div className="container mx-auto p-6">
+        <div className="container mx-auto">
           <WhenAndWhere />
           <HowToGiveUsAPresent />
         </div>
