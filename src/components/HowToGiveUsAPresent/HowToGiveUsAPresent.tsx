@@ -2,7 +2,10 @@ import * as React from 'react'
 
 const HowToGiveUsAPresent = () => {
   return (
-    <div className="p-4 my-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div
+      className="p-4 my-8 grid grid-cols-1 lg:grid-cols-2 gap-6"
+      id="how-to-give-us-a-present-section"
+    >
       <div className="bg-w-yellow-lighter p-6 rounded-lg shadow-lg">
         <div className="flex flex-col justify-center items-center mb-8">
           <h2 className="text-4xl font-bold mb-4 text-center">

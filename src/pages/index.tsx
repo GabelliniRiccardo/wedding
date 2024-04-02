@@ -10,7 +10,6 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <Layout showNavbar={true}>
       <motion.section
-        id="cover-section"
         className="h-screen relative"
         style={{
           backgroundImage: `url(${coupleImg})`,
@@ -30,8 +29,17 @@ const IndexPage: React.FC<PageProps> = () => {
           </div>
         </div>
       </motion.section>
-      <WhenAndWhere />
-      <HowToGiveUsAPresent />
+      <motion.section
+        className=" inset-0 overflow-y-auto bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${coupleImg})`,
+        }}
+      >
+        <div className="container mx-auto p-6">
+          <WhenAndWhere />
+          <HowToGiveUsAPresent />
+        </div>
+      </motion.section>
     </Layout>
   )
 }
