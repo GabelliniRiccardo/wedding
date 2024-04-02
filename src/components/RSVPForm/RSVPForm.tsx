@@ -1,35 +1,55 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ErrorMessage, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import { Button, Container, TextField, Typography } from '@mui/material'
+import queryString from 'query-string'
+import { useLocation } from '@reach/router'
 
 const validationSchema = Yup.object().shape({
   participants: Yup.array()
     .min(1, 'Inserisci almeno un partecipante')
     .max(10, 'Massimo 10 partecipanti')
     .of(Yup.string().required('Questo campo è richiesto')),
-  message: Yup.string(), // Aggiunto il campo "messaggio"
+  message: Yup.string(),
 })
 
 const RSVPForm = () => {
+  const location = useLocation()
+  const [formValues, setFormValues] = React.useState({
+    participants: [''],
+    message: '',
+  })
+
+  useEffect(() => {
+    const queryParams = queryString.parse(location.search)
+    let participantsFromQuery = queryParams.participants || ''
+    if (Array.isArray(participantsFromQuery)) {
+      participantsFromQuery = participantsFromQuery.join(',')
+    }
+    const participantsArray = participantsFromQuery.split(',')
+    const participants = participantsArray.length > 0 ? participantsArray : ['']
+    setFormValues({
+      ...formValues, // Mantieni gli altri valori del form
+      participants: participants,
+    })
+  }, [location.search])
+
   return (
     <Container maxWidth="md" className="mt-8">
       <Typography variant="h4" component="h1" gutterBottom>
         RSVP Form
       </Typography>
       <Formik
-        initialValues={{
-          participants: [''],
-          message: '', // Aggiunto il campo "messaggio" con valore iniziale vuoto
-        }}
+        initialValues={formValues}
         validationSchema={validationSchema}
+        enableReinitialize
         onSubmit={(values, { resetForm }) => {
           // Handle form submission here
           console.log(values)
           resetForm()
         }}
       >
-        {({ values, handleChange, errors }) => (
+        {({ values, handleChange }) => (
           <Form>
             {values.participants.map((participant, index) => (
               <div key={index} className="mt-4">
