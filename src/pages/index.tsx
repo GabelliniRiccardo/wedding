@@ -5,6 +5,7 @@ import Layout from '../components/Layout/Layout'
 import coupleImg from '../images/couple.jpg'
 import WhenAndWhere from '../components/WhenAndWhere/WhenAndWhere'
 import HowToGiveUsAPresent from '../components/HowToGiveUsAPresent/HowToGiveUsAPresent'
+import GoogleMaps from '../components/GoogleMaps/GoogleMaps'
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
@@ -35,9 +36,18 @@ const IndexPage: React.FC<PageProps> = () => {
           backgroundImage: `url(${coupleImg})`,
         }}
       >
-        <div className="container mx-auto">
-          <WhenAndWhere />
-          <HowToGiveUsAPresent />
+        <div className="container mx-auto my-8 px-1 px-md-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <WhenAndWhere />
+
+            <div className="lg:col-start-2 lg:row-start-2">
+              <GoogleMaps />
+            </div>
+
+            <div className="lg:row-start-3">
+              <HowToGiveUsAPresent />
+            </div>
+          </div>
         </div>
       </motion.section>
     </Layout>
