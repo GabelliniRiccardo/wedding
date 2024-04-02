@@ -30,9 +30,14 @@ const RSVPForm = () => {
     participants: [''],
     message: '',
   })
-  const [confirmed, setConfirmed] = useState(
-    localStorage.getItem('CONFIRMED') === 'true',
-  )
+  const [confirmed, setConfirmed] = useState(() => {
+    if (typeof window !== 'undefined') {
+      // This code will be executed only in client side
+      return localStorage.getItem('CONFIRMED') === 'true'
+    }
+    return false
+  })
+
   const [showSuccessModal, setShowSuccessModal] = useState(false)
 
   useEffect(() => {
