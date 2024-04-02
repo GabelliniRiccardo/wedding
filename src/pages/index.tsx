@@ -6,6 +6,7 @@ import coupleImg from '../images/couple.jpg'
 import WhenAndWhere from '../components/WhenAndWhere/WhenAndWhere'
 import HowToGiveUsAPresent from '../components/HowToGiveUsAPresent/HowToGiveUsAPresent'
 import GoogleMaps from '../components/GoogleMaps/GoogleMaps'
+import RSVPForm from '../components/RSVPForm/RSVPForm'
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
@@ -30,6 +31,7 @@ const IndexPage: React.FC<PageProps> = () => {
           </div>
         </div>
       </motion.section>
+
       <motion.section
         className=" inset-0 overflow-y-auto bg-cover bg-center"
         style={{
@@ -50,6 +52,8 @@ const IndexPage: React.FC<PageProps> = () => {
           </div>
         </div>
       </motion.section>
+
+      <RSVPForm></RSVPForm>
     </Layout>
   )
 }
