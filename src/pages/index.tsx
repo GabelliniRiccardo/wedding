@@ -4,6 +4,7 @@ import type { HeadFC, PageProps } from 'gatsby'
 import Layout from '../components/Layout/Layout'
 import { Container } from '@mui/material'
 import coupleImg from '../images/couple.jpg'
+import WhenAndWhere from '../components/WhenAndWhere/WhenAndWhere'
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
@@ -25,25 +26,21 @@ const IndexPage: React.FC<PageProps> = () => {
             >
               Riccardo & Chiara
             </h1>
-            <h2 className="text-3xl font-medium">7 settembre 2024</h2>
+            <h2 className="text-3xl font-medium">7 Settembre 2024</h2>
           </div>
         </div>
       </motion.section>
 
       <Container>
-        {/* Rest of the content */}
         <motion.section
           id="when-and-where-section"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mt-8"
+          className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6"
         >
-          <h2 className="text-3xl font-bold mb-4">Dove e Quando</h2>
-          <p className="text-lg">Data e Ora del Matrimonio</p>
+          <WhenAndWhere />
         </motion.section>
-
-        {/* Add other sections here */}
       </Container>
     </Layout>
   )

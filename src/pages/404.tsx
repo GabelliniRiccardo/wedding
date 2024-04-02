@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Link, HeadFC, PageProps } from 'gatsby'
+import { HeadFC, Link, PageProps } from 'gatsby'
 import Layout from '../components/Layout/Layout'
 
 const pageStyles = {
@@ -26,7 +26,7 @@ const codeStyles = {
 
 const NotFoundPage: React.FC<PageProps> = () => {
   return (
-    <Layout>
+    <Layout showNavbar={false}>
       <main style={pageStyles}>
         <h1 style={headingStyles}>Page not found</h1>
         <p style={paragraphStyles}>
