@@ -1,4 +1,3 @@
-// src/components/Welcome.js
 import React, { useEffect, useRef, useState } from 'react'
 import { useLocation } from '@reach/router'
 import { motion, useInView } from 'framer-motion'
@@ -10,6 +9,7 @@ import rings from '../images/rings.jpg'
 import handToHand from '../images/hand-to-hand.jpeg'
 import { Link } from 'gatsby'
 import { Button } from '@mui/material'
+import { variants } from '../constants'
 
 const writingSpeed = 20
 
@@ -67,11 +67,6 @@ const Welcome = () => {
     } else {
       return '*'
     }
-  }
-
-  const variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
   }
 
   return (
