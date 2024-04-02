@@ -23,7 +23,7 @@ const validationSchema = Yup.object().shape({
 
 const RSVPForm = () => {
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
 
   const location = useLocation()
   const [formValues, setFormValues] = useState({
@@ -32,7 +32,6 @@ const RSVPForm = () => {
   })
   const [confirmed, setConfirmed] = useState(() => {
     if (typeof window !== 'undefined') {
-      // This code will be executed only in client side
       return localStorage.getItem('CONFIRMED') === 'true'
     }
     return false
@@ -56,7 +55,7 @@ const RSVPForm = () => {
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      setLoading(true) // Attiva lo stato di caricamento
+      setLoading(true)
 
       await emailjs.send(
         process.env.GATSBY_EMAILJS_SERVICE_ID!,
@@ -74,9 +73,11 @@ const RSVPForm = () => {
       localStorage.setItem('CONFIRMED', 'true')
     } catch (error) {
       console.error("Errore nell'invio dell'email:", error)
-      setError(error.message || "Si è verificato un errore durante l'invio.")
+      setError(
+        "Si è verificato un errore durante l'invio della conferma. Riprovare più tardi.",
+      )
     } finally {
-      setLoading(false) // Disattiva lo stato di caricamento indipendentemente dall'esito
+      setLoading(false)
     }
   }
 
@@ -131,7 +132,6 @@ const RSVPForm = () => {
                         }}
                         variant="outlined"
                         color="error"
-                        className="ml-2"
                       >
                         Rimuovi
                       </Button>
@@ -139,23 +139,26 @@ const RSVPForm = () => {
                   )}
                 </div>
               ))}
+
               {values.participants.length < 10 && (
-                <Button
-                  type="button"
-                  onClick={() =>
-                    handleChange({
-                      target: {
-                        name: 'participants',
-                        value: [...values.participants, ''],
-                      },
-                    })
-                  }
-                  variant="outlined"
-                  color="success"
-                  className="mt-2"
-                >
-                  Aggiungi Partecipante
-                </Button>
+                <div className="flex items-center mt-2">
+                  <Button
+                    type="button"
+                    onClick={() =>
+                      handleChange({
+                        target: {
+                          name: 'participants',
+                          value: [...values.participants, ''],
+                        },
+                      })
+                    }
+                    variant="outlined"
+                    color="success"
+                    className="mt-2"
+                  >
+                    Aggiungi Partecipante
+                  </Button>
+                </div>
               )}
 
               <TextField
@@ -179,7 +182,7 @@ const RSVPForm = () => {
                   type="submit"
                   variant="contained"
                   color="primary"
-                  disabled={!isValid || loading} // Disabilita il pulsante durante il caricamento
+                  disabled={!isValid || loading}
                 >
                   {loading ? (
                     <CircularProgress size={24} color="inherit" />
@@ -187,32 +190,46 @@ const RSVPForm = () => {
                     'Invia'
                   )}
                 </Button>
-                {error && (
-                  <div className="text-red-500 text-sm mt-2">
-                    Errore durante l'invio del form: {error}
-                  </div>
-                )}
               </div>
             </Form>
           )}
         </Formik>
       )}
 
-      <Modal open={showSuccessModal} onClose={() => setShowSuccessModal(false)}>
-        <Container maxWidth="sm" className="mt-8 p-4 bg-white">
-          <Typography variant="h5" gutterBottom>
-            Presenza confermata, a presto!
-          </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              setShowSuccessModal(false)
-            }}
+      <Modal
+        open={showSuccessModal || !!error}
+        onClose={() => setShowSuccessModal(false)}
+      >
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center">
+          <div
+            className={`bg-white p-4 rounded-lg ${error ? 'bg-red-100' : ''}`}
           >
-            Chiudi
-          </Button>
-        </Container>
+            {error ? (
+              <Typography variant="h5" gutterBottom className="text-red-500">
+                Errore durante l'invio:
+              </Typography>
+            ) : (
+              <Typography variant="h5" gutterBottom>
+                Presenza confermata, a presto!
+              </Typography>
+            )}
+            <Typography variant="body1" gutterBottom>
+              {error ? error : 'Grazie per aver confermato la tua presenza.'}
+            </Typography>
+            <div className="flex justify-center mt-4">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  setShowSuccessModal(false)
+                  setError(null)
+                }}
+              >
+                Chiudi
+              </Button>
+            </div>
+          </div>
+        </div>
       </Modal>
     </Container>
   )
