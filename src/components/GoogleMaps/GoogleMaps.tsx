@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment } from 'react'
 
 const GoogleMaps = () => {
   return (
