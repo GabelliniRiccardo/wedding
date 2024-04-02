@@ -7,6 +7,7 @@ const GoogleMaps = () => {
 
   useEffect(() => {
     setIsClient(true)
+    console.log('Google maps src is', GOOGLE_MAPS_SRC)
   }, [])
 
   return (
