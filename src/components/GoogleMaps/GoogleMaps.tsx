@@ -3,21 +3,21 @@ import { Fragment, useEffect, useState } from 'react'
 
 const GoogleMaps = () => {
   const [isClient, setIsClient] = useState(false)
-  const GOOGLE_MAPS_SRC = process.env.GOOGLE_MAPS_SRC
+  const WEDDING_GOOGLE_MAPS_SRC = process.env.WEDDING_GOOGLE_MAPS_SRC
 
   useEffect(() => {
     setIsClient(true)
-    console.log('Google maps src is', GOOGLE_MAPS_SRC)
+    console.log('Google maps src is', WEDDING_GOOGLE_MAPS_SRC)
   }, [])
 
   return (
     <Fragment>
       {isClient && (
         <Fragment>
-          {GOOGLE_MAPS_SRC && (
+          {WEDDING_GOOGLE_MAPS_SRC && (
             <div className="rounded-lg overflow-hidden shadow-lg">
               <iframe
-                src={GOOGLE_MAPS_SRC}
+                src={WEDDING_GOOGLE_MAPS_SRC}
                 title="Google Maps"
                 className="w-full h-96"
                 loading="lazy"
