@@ -2,9 +2,9 @@ import * as React from 'react'
 import { motion } from 'framer-motion'
 import type { HeadFC, PageProps } from 'gatsby'
 import Layout from '../components/Layout/Layout'
-import { Container } from '@mui/material'
 import coupleImg from '../images/couple.jpg'
 import WhenAndWhere from '../components/WhenAndWhere/WhenAndWhere'
+import HowToGiveUsAPresent from '../components/HowToGiveUsAPresent/HowToGiveUsAPresent'
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
@@ -30,18 +30,8 @@ const IndexPage: React.FC<PageProps> = () => {
           </div>
         </div>
       </motion.section>
-
-      <Container>
-        <motion.section
-          id="when-and-where-section"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="my-8 grid grid-cols-1 lg:grid-cols-2 gap-6"
-        >
-          <WhenAndWhere />
-        </motion.section>
-      </Container>
+      <WhenAndWhere />
+      <HowToGiveUsAPresent />
     </Layout>
   )
 }
