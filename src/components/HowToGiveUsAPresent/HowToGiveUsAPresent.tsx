@@ -29,7 +29,10 @@ const HowToGiveUsAPresent = () => {
           Tuttavia, se desiderate fare un pensiero, ecco le coordinate bancarie
           per effettuare un bonifico:
         </p>
-        <p>P.s. se si clicca l'IBAN viene automaticamente copiato</p>
+        <div className="flex justify-between items-center">
+          <p>P.s. se si clicca l'IBAN viene automaticamente copiato</p>
+          <img src={gifImage} alt="GIF" className="max-w-24" />
+        </div>
         <div className="flex gap-1 mt-8">
           <div className="mt-4">
             <p className="font-bold">Beneficiario:</p>
@@ -54,7 +57,6 @@ const HowToGiveUsAPresent = () => {
             <p>Causale</p>
           </div>
         </div>
-        <img src={gifImage} alt="GIF" className="max-w-24" />
       </div>
     </div>
   )
