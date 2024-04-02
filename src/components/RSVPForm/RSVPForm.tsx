@@ -82,8 +82,13 @@ const RSVPForm = () => {
 
   return (
     <Container maxWidth="md" className="mt-8">
-      <Typography variant="h4" component="h1" gutterBottom>
-        RSVP Form
+      <Typography
+        variant="h4"
+        component="h1"
+        gutterBottom
+        id="confirm-presence-section"
+      >
+        Conferma Presenza
       </Typography>
       {!confirmed && (
         <Formik
