@@ -39,7 +39,7 @@ const RSVPForm = () => {
     return false
   })
 
-  const [showSuccessModal, setShowSuccessModal] = useState(true)
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
 
   useEffect(() => {
     const queryParams = queryString.parse(location.search)
@@ -54,6 +54,12 @@ const RSVPForm = () => {
       participants: participants,
     })
   }, [location.search])
+
+  useEffect(() => {
+    if (confirmed) {
+      setShowSuccessModal(true)
+    }
+  }, [])
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
@@ -113,7 +119,7 @@ const RSVPForm = () => {
           {({ values, handleChange, isValid }) => (
             <Form>
               {values.participants.map((participant, index) => (
-                <div key={index} className="mt-4">
+                <div key={index}>
                   <TextField
                     type="text"
                     name={`participants.${index}`}
@@ -129,7 +135,7 @@ const RSVPForm = () => {
                     className="text-red-500 text-sm"
                   />
                   {values.participants.length > 1 && (
-                    <div className="flex items-center mt-2">
+                    <div className="flex items-center my-2">
                       <Button
                         type="button"
                         onClick={() => {
@@ -153,7 +159,7 @@ const RSVPForm = () => {
               ))}
 
               {values.participants.length < 10 && (
-                <div className="flex items-center mt-2">
+                <div className="flex items-center my-2">
                   <Button
                     type="button"
                     onClick={() =>
@@ -240,7 +246,7 @@ const RSVPForm = () => {
                 <img
                   src={gifImageDance}
                   alt="GIF"
-                  className="max-w-24 mx-auto mt-4" // Aggiungiamo spazio in alto con mt-4
+                  className="max-w-24 mx-auto mt-4"
                 />
               </div>
             )}
