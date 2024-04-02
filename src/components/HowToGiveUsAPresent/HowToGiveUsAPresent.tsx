@@ -21,7 +21,7 @@ const HowToGiveUsAPresent = () => {
         </p>
         <p className="font-bold">IBAN: IT00 XXXX XXXX XXXX XXXX XXXX XXX</p>
         <div className="flex flex-wrap justify-between">
-          <img src={gifImage} alt="GIF" className="max-w-16 ml-auto" />
+          <img src={gifImage} alt="GIF" className="max-w-20 ml-auto" />
         </div>
       </div>
     </div>
