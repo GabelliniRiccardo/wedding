@@ -12,6 +12,8 @@ import {
 import queryString from 'query-string'
 import { useLocation } from '@reach/router'
 import emailjs from '@emailjs/browser'
+import gifImageDance from '../../images/dance.gif'
+import gifImageSleep from '../../images/sleep.gif'
 
 const validationSchema = Yup.object().shape({
   participants: Yup.array()
@@ -37,7 +39,7 @@ const RSVPForm = () => {
     return false
   })
 
-  const [showSuccessModal, setShowSuccessModal] = useState(false)
+  const [showSuccessModal, setShowSuccessModal] = useState(true)
 
   useEffect(() => {
     const queryParams = queryString.parse(location.search)
@@ -82,7 +84,7 @@ const RSVPForm = () => {
   }
 
   return (
-    <Container maxWidth="md" className="mt-8">
+    <Container maxWidth="md" className="my-8">
       <Typography
         variant="h4"
         component="h1"
@@ -91,6 +93,16 @@ const RSVPForm = () => {
       >
         Conferma Presenza
       </Typography>
+      {confirmed && (
+        <div className="flex flex-col items-center justify-center bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded-md mt-4">
+          <Typography variant="body1">
+            Presenza già confermata, non è necessario fare nulla ora. Al più si
+            può dormire come dei panda{' '}
+          </Typography>
+          <img src={gifImageSleep} alt="GIF" className="max-w-24" />
+        </div>
+      )}
+
       {!confirmed && (
         <Formik
           initialValues={formValues}
@@ -205,17 +217,33 @@ const RSVPForm = () => {
             className={`bg-white p-4 rounded-lg ${error ? 'bg-red-100' : ''}`}
           >
             {error ? (
-              <Typography variant="h5" gutterBottom className="text-red-500">
-                Errore durante l'invio:
-              </Typography>
+              <div>
+                <Typography variant="h5" gutterBottom className="text-red-500">
+                  Errore durante l'invio:
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {error}
+                </Typography>
+              </div>
             ) : (
-              <Typography variant="h5" gutterBottom>
-                Presenza confermata, a presto!
-              </Typography>
+              <div className="flex flex-col items-center justify-center">
+                <Typography variant="h5" gutterBottom>
+                  Presenza confermata, a presto!
+                </Typography>
+                <Typography
+                  variant="body1"
+                  gutterBottom
+                  className="text-center"
+                >
+                  Grazie per aver confermato la tua presenza.
+                </Typography>
+                <img
+                  src={gifImageDance}
+                  alt="GIF"
+                  className="max-w-24 mx-auto mt-4" // Aggiungiamo spazio in alto con mt-4
+                />
+              </div>
             )}
-            <Typography variant="body1" gutterBottom>
-              {error ? error : 'Grazie per aver confermato la tua presenza.'}
-            </Typography>
             <div className="flex justify-center mt-4">
               <Button
                 variant="contained"
