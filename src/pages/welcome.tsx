@@ -16,6 +16,7 @@ const writingSpeed = 20
 const Welcome = () => {
   const location = useLocation()
   const [usernames, setUsernames] = useState<string[]>([])
+  const [sexType, setSexType] = useState<'m' | 'f' | null>(null)
   const weMarryElementRef = useRef(null)
   const isWeMarryInView = useInView(weMarryElementRef, {
     margin: '0px 0px -60% 0px',
@@ -25,6 +26,13 @@ const Welcome = () => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search)
     const usernamesParam = searchParams.get('usernames')
+    const sexParam = searchParams.get('s')
+
+    if (sexParam === 'm' || sexParam === 'f') {
+      setSexType(sexParam)
+    } else {
+      setSexType(null)
+    }
 
     if (usernamesParam) {
       const parsedUsernames = usernamesParam.split(',')
@@ -42,13 +50,23 @@ const Welcome = () => {
     }
 
     if (usernames.length === 1) {
-      return `Ciao ${usernames[0]},\nBenvenuto`
+      return `Ciao ${usernames[0]},\nBenvenut${generateMaleOrFEmaleOrNonBinaryWord()}`
     }
 
     const lastUsername = usernames[usernames.length - 1]
     const penultimateNames = usernames.slice(0, -1).join(', ')
 
     return `Ciao ${penultimateNames} e ${lastUsername},\nBenvenuti!`
+  }
+
+  function generateMaleOrFEmaleOrNonBinaryWord(): 'o' | 'a' | '*' {
+    if (sexType === 'm') {
+      return 'o'
+    } else if (sexType === 'f') {
+      return 'a'
+    } else {
+      return '*'
+    }
   }
 
   const variants = {
