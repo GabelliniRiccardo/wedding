@@ -60,7 +60,7 @@ const IndexPage: React.FC<PageProps> = () => {
       </motion.section>
 
       <div className="container mx-auto my-8 px-1 px-md-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2  justify-items-center gap-20">
           <motion.div
             ref={whenAndWhereRef}
             initial={{ opacity: 0, x: -100 }}
@@ -72,6 +72,21 @@ const IndexPage: React.FC<PageProps> = () => {
           >
             <WhenAndWhere />
           </motion.div>
+
+          <div className="flex flex-col justify-items-center rounded-lg shadow-lg bg-red-100 my-auto">
+            <img
+              src={coupleImg}
+              alt="First Wedding Image"
+              className="rounded-t-md"
+            />
+            <div className="p-4">sss</div>
+          </div>
+
+          <img
+            src={coupleImg}
+            alt="Couple"
+            className="w-96 h-96 rounded-full shadow-lg object-cover my-auto"
+          />
 
           <motion.div
             ref={howToGiveUsAPresentRef}
