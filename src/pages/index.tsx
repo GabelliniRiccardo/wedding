@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion' // Import useInView hook
 import type { HeadFC, PageProps } from 'gatsby'
 import Layout from '../components/Layout/Layout'

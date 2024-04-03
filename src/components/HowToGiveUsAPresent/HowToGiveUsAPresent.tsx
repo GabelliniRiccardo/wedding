@@ -7,12 +7,12 @@ const HowToGiveUsAPresent = ({
 }: {
   isSingleParticipant: boolean
 }) => {
-  const iban = 'IT00 XXXX XXXX XXXX XXXX XXXX XXX'
+  const iban = process.env.GATSBY_BANK_IBAN
   const [copySuccess, setCopySuccess] = useState(false)
 
   const copyToClipboard = () => {
-    const ibanWithoutSpaces = iban.replace(/\s/g, '')
-    navigator.clipboard.writeText(ibanWithoutSpaces)
+    const ibanWithoutSpaces = iban?.replace(/\s/g, '')
+    navigator.clipboard.writeText(ibanWithoutSpaces ?? '')
     setCopySuccess(true)
     setTimeout(() => {
       setCopySuccess(false)
@@ -63,9 +63,9 @@ const HowToGiveUsAPresent = ({
         <div className="flex gap-1 mt-8">
           <div className="mt-4">
             <p className="font-bold">Beneficiario:</p>
-            <p>Riccardo Gabellini</p>
+            <p>{process.env.GATSBY_BANK_ACCOUNT_OWNER}</p>
             <p className="font-bold mt-2">Indirizzo Banca:</p>
-            <p>Nome Banca</p>
+            <p>{process.env.GATSBY_BANK_BANK_NAME}</p>
             <p className="font-bold mt-2">IBAN:</p>
             <Tooltip
               title={copySuccess ? 'Copiato!' : 'Clicca per copiare'}
@@ -79,9 +79,9 @@ const HowToGiveUsAPresent = ({
               </p>
             </Tooltip>
             <p className="font-bold mt-2">Codice SWIFT/BIC:</p>
-            <p>SWIFT/BIC</p>
+            <p>{process.env.GATSBY_BANK_SWIFT_BIC}</p>
             <p className="font-bold mt-2">Causale:</p>
-            <p>Causale</p>
+            <p>{process.env.GATSBY_BANK_CAUSALE}</p>
           </div>
         </div>
       </div>
