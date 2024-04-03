@@ -73,7 +73,7 @@ const IndexPage: React.FC<PageProps> = () => {
             <WhenAndWhere />
           </motion.div>
 
-          <div className="flex flex-col justify-items-center rounded-lg shadow-lg bg-red-100 my-auto">
+          <div className="flex flex-col justify-items-center rounded-lg shadow-lg my-auto">
             <img
               src={coupleImg}
               alt="First Wedding Image"
@@ -102,6 +102,7 @@ const IndexPage: React.FC<PageProps> = () => {
             />
           </motion.div>
         </div>
+
         <RSVPForm
           updateParticipants={(newValue: string[]) => {
             setParticipants(newValue)

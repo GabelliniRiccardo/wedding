@@ -12,6 +12,7 @@ import {
 import emailjs from '@emailjs/browser'
 import gifImageDance from '../../images/dance.gif'
 import gifImageSleep from '../../images/sleep.gif'
+import weddingCouple from '../../images/wedding-couple.gif'
 
 const validationSchema = Yup.object().shape({
   participants: Yup.array()
@@ -77,14 +78,21 @@ const RSVPForm = ({
 
   return (
     <Container maxWidth="md" className="my-8">
-      <Typography
-        variant="h4"
-        component="h1"
-        gutterBottom
-        id="confirm-presence-section"
-      >
-        Conferma Presenza
-      </Typography>
+      <div className="flex justify-between items-end gap-4">
+        <Typography
+          variant="h4"
+          component="h1"
+          gutterBottom
+          id="confirm-presence-section"
+        >
+          Conferma Presenza
+        </Typography>
+        <img
+          src={weddingCouple}
+          alt="Couple"
+          className="w-20 h-20 md:w-40 md:h-40 rounded-full shadow-lg object-cover my-auto"
+        />
+      </div>
       {confirmed && (
         <div className="flex flex-col items-center justify-center bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded-md mt-4">
           <Typography variant="body1">
@@ -139,7 +147,7 @@ const RSVPForm = ({
                       className="text-red-500 text-sm"
                     />
                     {values.participants.length > 1 && (
-                      <div className="flex items-center my-2">
+                      <div className="flex items-center my-3">
                         <Button
                           type="button"
                           onClick={() => {
