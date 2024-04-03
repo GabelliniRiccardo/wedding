@@ -14,9 +14,6 @@ const WhenAndWhere = () => {
           >
             Dove e Quando
           </h2>
-        </div>
-        <GoogleMaps />
-        <div className="p-6">
           <div className="flex flex-col space-y-4">
             <div>
               <p className="text-lg font-bold">Data e Ora:</p>
@@ -37,6 +34,7 @@ const WhenAndWhere = () => {
             </div>
           </div>
         </div>
+        <GoogleMaps />
       </div>
     </Fragment>
   )
