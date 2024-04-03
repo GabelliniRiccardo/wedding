@@ -9,8 +9,6 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import queryString from 'query-string'
-import { useLocation } from '@reach/router'
 import emailjs from '@emailjs/browser'
 import gifImageDance from '../../images/dance.gif'
 import gifImageSleep from '../../images/sleep.gif'
@@ -23,15 +21,16 @@ const validationSchema = Yup.object().shape({
   message: Yup.string(),
 })
 
-const RSVPForm = () => {
+const RSVPForm = ({
+  participants,
+  updateParticipants,
+}: {
+  participants: string[]
+  updateParticipants: (newValue: string[]) => void
+}) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const location = useLocation()
-  const [formValues, setFormValues] = useState({
-    participants: [''],
-    message: '',
-  })
   const [confirmed, setConfirmed] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('CONFIRMED') === 'true'
@@ -40,20 +39,6 @@ const RSVPForm = () => {
   })
 
   const [showSuccessModal, setShowSuccessModal] = useState(false)
-
-  useEffect(() => {
-    const queryParams = queryString.parse(location.search)
-    let participantsFromQuery = queryParams.participants || ''
-    if (Array.isArray(participantsFromQuery)) {
-      participantsFromQuery = participantsFromQuery.join(',')
-    }
-    const participantsArray = participantsFromQuery.split(',')
-    const participants = participantsArray.length > 0 ? participantsArray : ['']
-    setFormValues({
-      ...formValues,
-      participants: participants,
-    })
-  }, [location.search])
 
   useEffect(() => {
     if (confirmed) {
@@ -76,6 +61,7 @@ const RSVPForm = () => {
         process.env.GATSBY_EMAILJS_PUBLIC_KEY!,
       )
 
+      updateParticipants(values.participants)
       setShowSuccessModal(true)
       setConfirmed(true)
       localStorage.setItem('CONFIRMED', 'true')
@@ -111,7 +97,7 @@ const RSVPForm = () => {
 
       {!confirmed && (
         <Formik
-          initialValues={formValues}
+          initialValues={{ participants: participants, message: '' }}
           validationSchema={validationSchema}
           enableReinitialize
           onSubmit={handleSubmit}
@@ -159,6 +145,7 @@ const RSVPForm = () => {
                           onClick={() => {
                             const updatedParticipants = [...values.participants]
                             updatedParticipants.splice(index, 1)
+                            updateParticipants(updatedParticipants)
                             handleChange({
                               target: {
                                 name: 'participants',
@@ -180,14 +167,15 @@ const RSVPForm = () => {
                   <div className="flex items-center my-2">
                     <Button
                       type="button"
-                      onClick={() =>
+                      onClick={() => {
                         handleChange({
                           target: {
                             name: 'participants',
                             value: [...values.participants, ''],
                           },
                         })
-                      }
+                        updateParticipants([...values.participants, ''])
+                      }}
                       variant="outlined"
                       color="success"
                       className="mt-2"

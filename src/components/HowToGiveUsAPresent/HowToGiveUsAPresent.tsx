@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 import { Tooltip } from '@mui/material'
 import gifImage from '../../images/present.gif'
 
-const HowToGiveUsAPresent = () => {
+const HowToGiveUsAPresent = ({
+  isSingleParticipant,
+}: {
+  isSingleParticipant: boolean
+}) => {
   const iban = 'IT00 XXXX XXXX XXXX XXXX XXXX XXX'
   const [copySuccess, setCopySuccess] = useState(false)
 
@@ -21,14 +25,32 @@ const HowToGiveUsAPresent = () => {
         <h2 className="text-4xl font-bold mb-4 text-center">
           Come darci un regalo
         </h2>
-        <p>
-          Non è necessario un regalo, poiché ciò che conta davvero è la vostra
-          <span className="font-bold"> preziosa</span> presenza.
-        </p>
-        <p>
-          Tuttavia, se desiderate fare un pensiero, ecco le coordinate bancarie
-          per effettuare un bonifico:
-        </p>
+        {isSingleParticipant && (
+          <div>
+            <p>
+              Non è necessario un regalo, poiché ciò che conta davvero è la tua
+              <span className="font-bold"> preziosa</span> presenza.
+            </p>
+            <p>
+              Tuttavia, se desideri fare un pensiero, ecco le coordinate
+              bancarie per effettuare un bonifico:
+            </p>
+          </div>
+        )}
+        {!isSingleParticipant && (
+          <div>
+            <p>
+              Non è necessario un regalo, poiché ciò che conta davvero è la
+              vostra
+              <span className="font-bold"> preziosa</span> presenza.
+            </p>
+            <p>
+              Tuttavia, se desiderate fare un pensiero, ecco le coordinate
+              bancarie per effettuare un bonifico:
+            </p>
+          </div>
+        )}
+
         <div className="flex justify-between items-center">
           <p className="mt-8">
             P.s. se si clicca l'IBAN viene automaticamente copiato

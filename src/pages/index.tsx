@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion' // Import useInView hook
 import type { HeadFC, PageProps } from 'gatsby'
 import Layout from '../components/Layout/Layout'
@@ -7,6 +7,8 @@ import coupleImg from '../images/couple.jpg'
 import WhenAndWhere from '../components/WhenAndWhere/WhenAndWhere'
 import HowToGiveUsAPresent from '../components/HowToGiveUsAPresent/HowToGiveUsAPresent'
 import RSVPForm from '../components/RSVPForm/RSVPForm'
+import queryString from 'query-string'
+import { useLocation } from '@reach/router'
 
 const IndexPage: React.FC<PageProps> = () => {
   const whenAndWhereRef = useRef(null)
@@ -19,6 +21,21 @@ const IndexPage: React.FC<PageProps> = () => {
     margin: '0px 0px -60% 0px',
     once: true,
   })
+
+  const location = useLocation()
+  const [participants, setParticipants] = useState<string[]>([])
+
+  useEffect(() => {
+    const queryParams = queryString.parse(location.search)
+    let participantsFromQuery = queryParams.participants || ''
+    if (Array.isArray(participantsFromQuery)) {
+      participantsFromQuery = participantsFromQuery.join(',')
+    }
+    const participantsArray = participantsFromQuery.split(',')
+    const participants = participantsArray.length > 0 ? participantsArray : ['']
+    setParticipants(participants)
+  }, [location.search])
+
   return (
     <Layout showNavbar={true}>
       <motion.section
@@ -65,10 +82,17 @@ const IndexPage: React.FC<PageProps> = () => {
             }}
             transition={{ duration: 2.5 }}
           >
-            <HowToGiveUsAPresent />
+            <HowToGiveUsAPresent
+              isSingleParticipant={participants.length === 1}
+            />
           </motion.div>
         </div>
-        <RSVPForm />
+        <RSVPForm
+          updateParticipants={(newValue: string[]) => {
+            setParticipants(newValue)
+          }}
+          participants={participants}
+        />
       </div>
     </Layout>
   )
