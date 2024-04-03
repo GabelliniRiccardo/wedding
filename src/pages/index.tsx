@@ -79,7 +79,7 @@ const IndexPage: React.FC<PageProps> = () => {
               alt="First Wedding Image"
               className="rounded-t-md"
             />
-            <div className="p-4">sss</div>
+            <div className="p-4">07/04/2013 l'inizio....</div>
           </div>
 
           <img
