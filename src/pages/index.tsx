@@ -59,9 +59,10 @@ const IndexPage: React.FC<PageProps> = () => {
         </div>
       </motion.section>
 
-      <div className="container mx-auto my-8 px-1 px-md-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2  justify-items-center gap-20">
+      <div className="container mx-auto my-8 px-1">
+        <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-20">
           <motion.div
+            className="w-full"
             ref={whenAndWhereRef}
             initial={{ opacity: 0, x: -100 }}
             animate={{
@@ -89,6 +90,7 @@ const IndexPage: React.FC<PageProps> = () => {
           />
 
           <motion.div
+            className="w-full"
             ref={howToGiveUsAPresentRef}
             initial={{ opacity: 0, x: 100 }}
             animate={{
