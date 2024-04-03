@@ -47,7 +47,10 @@ const RSVPForm = ({
     }
   }, [])
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = async (values: {
+    participants: string[]
+    message: string
+  }) => {
     try {
       setLoading(true)
 

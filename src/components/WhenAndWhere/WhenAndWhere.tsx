@@ -6,14 +6,15 @@ import { Fragment } from 'react'
 const WhenAndWhere = () => {
   return (
     <Fragment>
-      <h2
-        className="text-4xl font-bold mb-4 text-center text-gray-800"
-        id="when-and-where-section"
-      >
-        Dove e Quando
-      </h2>
-
       <div className="bg-green-600 bg-opacity-25 rounded-lg shadow-lg flex flex-col justify-between h-full w-full">
+        <div className="p-6">
+          <h2
+            className="text-4xl font-bold mb-4 text-center text-gray-800"
+            id="when-and-where-section"
+          >
+            Dove e Quando
+          </h2>
+        </div>
         <GoogleMaps />
         <div className="p-6">
           <div className="flex flex-col space-y-4">
