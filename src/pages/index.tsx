@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion' // Import useInView hook
 import type { HeadFC, PageProps } from 'gatsby'
 import Layout from '../components/Layout/Layout'
@@ -111,6 +111,32 @@ const IndexPage: React.FC<PageProps> = () => {
           }}
           participants={participants}
         />
+
+        {participants.length > 1 ? (
+          <div className="text-center">
+            <p>
+              Il nostro "Ingegnere" di fiducia ha realizzato questa pagina per
+              formalizzare il vostro invito al nostro matrimonio!
+            </p>
+            <p>
+              {' '}
+              Se notate dei problemi alla pagina.. Beh, sappiate che lo paghiamo
+              poco e lo facciamo lavorare di notte 🦇
+            </p>
+          </div>
+        ) : (
+          <div className="text-center">
+            <p>
+              Il nostro "Ingegnere" di fiducia ha realizzato questa pagina per
+              formalizzare il tuo invito al nostro matrimonio!
+            </p>
+            <p>
+              {' '}
+              Se noti dei problemi alla pagina... Beh, sappi che lo paghiamo
+              poco e lo facciamo lavorare di notte 🦇
+            </p>
+          </div>
+        )}
       </div>
     </Layout>
   )
