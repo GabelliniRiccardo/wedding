@@ -66,7 +66,7 @@ const Welcome = () => {
     const lastUsername = processedUsernames.pop()
     const firstNamesJoin = processedUsernames.join(', ')
 
-    return `Ciao ${firstNamesJoin} e ${lastUsername},\nBenvenuti!`
+    return `Ciao ${firstNamesJoin} e ${lastUsername},\n\nBenvenuti!`
   }
 
   function generateMaleOrFEmaleOrNonBinaryWord(): 'o' | 'a' | '*' {
@@ -146,7 +146,7 @@ const Welcome = () => {
                     fontFamily: 'LovedbytheKingRegular',
                   }}
                   className="text-7xl"
-                  sequence={['Finalmente Ci Sposiamo!']}
+                  sequence={['Finalmente ci sposiamo!']}
                   wrapper="div"
                   speed={writingSpeed}
                   repeat={0}
@@ -160,7 +160,6 @@ const Welcome = () => {
                     color="primary"
                     size="large"
                     style={{
-                      fontFamily: 'LovedbytheKingRegular',
                       fontSize: 33,
                     }}
                   >

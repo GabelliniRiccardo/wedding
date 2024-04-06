@@ -14,9 +14,17 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'TiltNeon-Regular';
+  src: url('../fonts/TiltNeon-Regular.ttf') format('truetype');
+  font-weight: auto;
+  font-style: normal;
+}
+
 html,
 body {
   @apply h-full bg-w-yellow-lightest;
+  font-family: 'TiltNeon-Regular', serif;
 }
 
 #gatsby-focus-wrapper,

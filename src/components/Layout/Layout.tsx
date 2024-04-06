@@ -4,15 +4,16 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from '../Navbar/Navbar'
 import Footer from '../Footer/Footer'
 import { createTheme, ThemeProvider } from '@mui/material'
-import theme from 'tailwindcss/defaultTheme'
 
-// Define your custom theme
 const customTheme = createTheme({
   palette: {
     primary: {
       main: '#ffd284',
       contrastText: '#3b3b3b',
     },
+  },
+  typography: {
+    fontFamily: 'TiltNeon-Regular',
   },
 })
 
