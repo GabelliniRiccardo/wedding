@@ -124,7 +124,7 @@ const RSVPForm = ({
           enableReinitialize
           onSubmit={handleSubmit}
         >
-          {({ values, handleChange, isValid, errors }) => (
+          {({ values, handleChange, handleBlur, isValid, errors, touched }) => (
             <Fragment>
               <div className="my-8">
                 {values.participants.length > 1 ? (
@@ -147,6 +147,8 @@ const RSVPForm = ({
                         error={Boolean(
                           errors.participants &&
                             errors.participants[index] &&
+                            touched.participants &&
+                            touched.participants[index] &&
                             errors.participants[index].firstName,
                         )}
                         id={`outlined-firstName-${index}`}
@@ -155,11 +157,14 @@ const RSVPForm = ({
                         placeholder="Inserisci nome partecipante"
                         value={participant.firstName}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         fullWidth
                         variant="outlined"
                         helperText={
                           errors.participants &&
                           errors.participants[index] &&
+                          touched.participants &&
+                          touched.participants[index] &&
                           (errors.participants[index].firstName || '')
                         }
                       />
@@ -167,6 +172,8 @@ const RSVPForm = ({
                         error={Boolean(
                           errors.participants &&
                             errors.participants[index] &&
+                            touched.participants &&
+                            touched.participants[index] &&
                             errors.participants[index].lastName,
                         )}
                         id={`outlined-lastName-${index}`}
@@ -175,11 +182,14 @@ const RSVPForm = ({
                         placeholder="Inserisci cognome partecipante"
                         value={participant.lastName}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         fullWidth
                         variant="outlined"
                         helperText={
                           errors.participants &&
                           errors.participants[index] &&
+                          touched.participants &&
+                          touched.participants[index] &&
                           (errors.participants[index].lastName || '')
                         }
                       />
@@ -250,6 +260,7 @@ const RSVPForm = ({
                   placeholder="Inserisci il messaggio"
                   value={values.message}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   fullWidth
                   variant="outlined"
                 />
