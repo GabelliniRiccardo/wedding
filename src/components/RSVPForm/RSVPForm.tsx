@@ -244,6 +244,7 @@ const RSVPForm = ({
                 <TextField
                   error={Boolean(errors.message)}
                   id="outlined-message"
+                  name={`message`}
                   label="Messaggio"
                   placeholder="Inserisci il messaggio"
                   value={values.message}
