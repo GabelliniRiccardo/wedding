@@ -133,30 +133,22 @@ const RSVPForm = ({
                 </Typography>
               </div>
               <Form>
-                {values.participants.map((participant, index) => (
-                  <div key={index}>
-                    <TextField
-                      type="text"
-                      name={`participants.${index}`}
-                      label="Partecipante"
-                      placeholder="Inserisci nome partecipante"
-                      value={participant}
-                      onChange={handleChange}
-                      fullWidth
-                    />
-                    <ErrorMessage
-                      name={`participants.${index}`}
-                      component="div"
-                      className="text-red-500 text-sm"
-                    />
-                    {values.participants.length > 1 && (
-                      <div className="flex items-center my-3">
-                        <Button
-                          type="button"
-                          onClick={() => {
+                {values.participants.map((participant, index) => {
+                  const [firstName, ...lastName] = participant.split(' ')
+                  const lastNameValue = lastName.join(' ')
+                  return (
+                    <div key={index} className="flex flex-col gap-4">
+                      <div className="flex flex-col md:flex-row gap-4">
+                        <TextField
+                          type="text"
+                          name={`participants.${index}`}
+                          label="Nome"
+                          placeholder="Inserisci nome partecipante"
+                          value={firstName}
+                          onChange={(e) => {
                             const updatedParticipants = [...values.participants]
-                            updatedParticipants.splice(index, 1)
-                            updateParticipants(updatedParticipants)
+                            updatedParticipants[index] =
+                              `${e.target.value} ${lastNameValue}`
                             handleChange({
                               target: {
                                 name: 'participants',
@@ -164,15 +156,64 @@ const RSVPForm = ({
                               },
                             })
                           }}
-                          variant="outlined"
-                          color="error"
-                        >
-                          Rimuovi
-                        </Button>
+                          fullWidth
+                        />
+                        <ErrorMessage
+                          name={`participants.${index}`}
+                          component="div"
+                          className="text-red-500 text-sm"
+                        />
+                        <TextField
+                          type="text"
+                          label="Cognome"
+                          placeholder="Inserisci cognome partecipante"
+                          value={lastNameValue}
+                          onChange={(e) => {
+                            const updatedParticipants = [...values.participants]
+                            updatedParticipants[index] =
+                              `${firstName} ${e.target.value}`
+                            handleChange({
+                              target: {
+                                name: 'participants',
+                                value: updatedParticipants,
+                              },
+                            })
+                          }}
+                          fullWidth
+                        />
+                        <ErrorMessage
+                          name={`participants.${index}`}
+                          component="div"
+                          className="text-red-500 text-sm"
+                        />
                       </div>
-                    )}
-                  </div>
-                ))}
+                      {values.participants.length > 1 && (
+                        <div className="flex items-center my-3">
+                          <Button
+                            type="button"
+                            onClick={() => {
+                              const updatedParticipants = [
+                                ...values.participants,
+                              ]
+                              updatedParticipants.splice(index, 1)
+                              updateParticipants(updatedParticipants)
+                              handleChange({
+                                target: {
+                                  name: 'participants',
+                                  value: updatedParticipants,
+                                },
+                              })
+                            }}
+                            variant="outlined"
+                            color="error"
+                          >
+                            Rimuovi
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
 
                 {values.participants.length < 10 && (
                   <div className="flex items-center my-2">
