@@ -19,8 +19,12 @@ const validationSchema = Yup.object().shape({
   participants: Yup.array()
     .of(
       Yup.object().shape({
-        firstName: Yup.string().required('Il nome è richiesto'),
-        lastName: Yup.string().required('Il cognome è richiesto'),
+        firstName: Yup.string().required(
+          'Il nome del partecipante è obbligatorio',
+        ),
+        lastName: Yup.string().required(
+          'Il cognome del partecipante è obbligatorio',
+        ),
       }),
     )
     .min(1, 'Inserisci almeno un partecipante')
