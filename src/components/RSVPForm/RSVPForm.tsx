@@ -78,12 +78,7 @@ const RSVPForm = ({
         process.env.GATSBY_EMAILJS_CONTACT_ME_TEMPLATE_ID!,
         {
           to_email: 'gabelliniriccardo.94@gmail.com',
-          participants: values.participants
-            .map(
-              (participant) =>
-                `${participant.firstName} ${participant.lastName}`,
-            )
-            .join(', '),
+          participants: values.participants,
           message: values.message,
         },
         process.env.GATSBY_EMAILJS_PUBLIC_KEY!,
