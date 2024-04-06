@@ -54,13 +54,19 @@ const Welcome = () => {
     }
 
     if (usernames.length === 1) {
-      return `Ciao ${usernames[0]},\nBenvenut${generateMaleOrFEmaleOrNonBinaryWord()}`
+      const [firstName] = usernames[0].split(' ')
+      return `Ciao ${firstName},\nBenvenut${generateMaleOrFEmaleOrNonBinaryWord()}`
     }
 
-    const lastUsername = usernames[usernames.length - 1]
-    const penultimateNames = usernames.slice(0, -1).join(', ')
+    const processedUsernames = usernames.map((username) => {
+      const [firstName] = username.split(' ')
+      return firstName
+    })
 
-    return `Ciao ${penultimateNames} e ${lastUsername},\nBenvenuti!`
+    const lastUsername = processedUsernames.pop()
+    const firstNamesJoin = processedUsernames.join(', ')
+
+    return `Ciao ${firstNamesJoin} e ${lastUsername},\nBenvenuti!`
   }
 
   function generateMaleOrFEmaleOrNonBinaryWord(): 'o' | 'a' | '*' {
