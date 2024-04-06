@@ -161,6 +161,11 @@ const RSVPForm = ({
                         onChange={handleChange}
                         fullWidth
                         variant="outlined"
+                        helperText={
+                          errors.participants &&
+                          errors.participants[index] &&
+                          (errors.participants[index].firstName || '')
+                        }
                       />
                       <TextField
                         error={Boolean(
@@ -176,6 +181,11 @@ const RSVPForm = ({
                         onChange={handleChange}
                         fullWidth
                         variant="outlined"
+                        helperText={
+                          errors.participants &&
+                          errors.participants[index] &&
+                          (errors.participants[index].lastName || '')
+                        }
                       />
                     </div>
                     {values.participants.length > 1 && (
