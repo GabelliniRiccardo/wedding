@@ -67,13 +67,7 @@ const Navbar: React.FC = () => {
                   spy={true}
                   activeClass="active"
                 >
-                  <Typography
-                    variant="subtitle1"
-                    className="cursor-pointer"
-                    fontFamily="MenuFont"
-                  >
-                    {item.label}
-                  </Typography>
+                  <span className="cursor-pointer">{item.label}</span>
                 </ScrollLink>
               ))}
             </div>
