@@ -20,7 +20,7 @@ const HowToGiveUsAPresent = ({
   }
 
   return (
-    <div className="bg-orange-600 bg-opacity-25 p-6 rounded-lg shadow-lg h-full">
+    <div className="bg-orange-400 bg-opacity-25 p-6 rounded-lg shadow-lg h-full">
       <div className="flex flex-col justify-between items-center mb-8 text-lg gap-3">
         <h2
           className="text-4xl font-bold mb-4 text-center"
