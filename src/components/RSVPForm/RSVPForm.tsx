@@ -49,7 +49,7 @@ const RSVPForm = ({
     if (confirmed) {
       setShowSuccessModal(true)
     }
-  }, [])
+  }, [confirmed])
 
   const handleSubmit = async (values: {
     participants: Participant[]
@@ -120,7 +120,7 @@ const RSVPForm = ({
           enableReinitialize
           onSubmit={handleSubmit}
         >
-          {({ values, handleChange, isValid }) => (
+          {({ values, handleChange, isValid, errors }) => (
             <Fragment>
               <div className="my-8">
                 {values.participants.length > 1 ? (
@@ -144,32 +144,34 @@ const RSVPForm = ({
                   <div key={index} className="flex flex-col gap-4">
                     <div className="flex flex-col md:flex-row gap-4">
                       <TextField
-                        type="text"
+                        error={Boolean(
+                          errors.participants &&
+                            errors.participants[index] &&
+                            errors.participants[index].firstName,
+                        )}
+                        id={`outlined-firstName-${index}`}
                         name={`participants.${index}.firstName`}
                         label="Nome"
                         placeholder="Inserisci nome partecipante"
                         value={participant.firstName}
                         onChange={handleChange}
                         fullWidth
-                      />
-                      <ErrorMessage
-                        name={`participants.${index}.firstName`}
-                        component="div"
-                        className="text-red-500 text-sm"
+                        variant="outlined"
                       />
                       <TextField
-                        type="text"
-                        label="Cognome"
+                        error={Boolean(
+                          errors.participants &&
+                            errors.participants[index] &&
+                            errors.participants[index].lastName,
+                        )}
+                        id={`outlined-lastName-${index}`}
                         name={`participants.${index}.lastName`}
+                        label="Cognome"
                         placeholder="Inserisci cognome partecipante"
                         value={participant.lastName}
                         onChange={handleChange}
                         fullWidth
-                      />
-                      <ErrorMessage
-                        name={`participants.${index}.lastName`}
-                        component="div"
-                        className="text-red-500 text-sm"
+                        variant="outlined"
                       />
                     </div>
                     {values.participants.length > 1 && (
@@ -226,14 +228,14 @@ const RSVPForm = ({
                 )}
 
                 <TextField
-                  type="text"
-                  name="message"
+                  error={Boolean(errors.message)}
+                  id="outlined-message"
                   label="Messaggio"
                   placeholder="Inserisci il messaggio"
                   value={values.message}
                   onChange={handleChange}
                   fullWidth
-                  className="mt-4"
+                  variant="outlined"
                 />
                 <ErrorMessage
                   name="message"
