@@ -16,29 +16,32 @@ import weddingCouple from '../../images/wedding-couple.gif'
 
 const validationSchema = Yup.object().shape({
   participants: Yup.array()
+    .of(
+      Yup.object().shape({
+        firstName: Yup.string().required('Il nome è richiesto'),
+        lastName: Yup.string().required('Il cognome è richiesto'),
+      }),
+    )
     .min(1, 'Inserisci almeno un partecipante')
-    .max(10, 'Massimo 10 partecipanti')
-    .of(Yup.string().required('Questo campo è richiesto')),
+    .max(10, 'Massimo 10 partecipanti'),
   message: Yup.string(),
 })
 
 const RSVPForm = ({
-  participants,
   updateParticipants,
 }: {
-  participants: string[]
-  updateParticipants: (newValue: string[]) => void
+  updateParticipants: (
+    newValue: { firstName: string; lastName: string }[],
+  ) => void
 }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-
   const [confirmed, setConfirmed] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('CONFIRMED') === 'true'
     }
     return false
   })
-
   const [showSuccessModal, setShowSuccessModal] = useState(false)
 
   useEffect(() => {
@@ -47,8 +50,24 @@ const RSVPForm = ({
     }
   }, [])
 
+  const getParticipantsFromURL = () => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const participantsParam = urlParams.get('participants')
+    if (participantsParam) {
+      const participantsData = participantsParam
+        .split(',')
+        .map((participant) => {
+          const [firstName, ...lastName] = participant.split(' ')
+          const lastNameValue = lastName.join(' ')
+          return { firstName, lastName: lastNameValue }
+        })
+      return participantsData
+    }
+    return []
+  }
+
   const handleSubmit = async (values: {
-    participants: string[]
+    participants: { firstName: string; lastName: string }[]
     message: string
   }) => {
     try {
@@ -59,7 +78,12 @@ const RSVPForm = ({
         process.env.GATSBY_EMAILJS_CONTACT_ME_TEMPLATE_ID!,
         {
           to_email: 'gabelliniriccardo.94@gmail.com',
-          participants: values.participants.join(', '),
+          participants: values.participants
+            .map(
+              (participant) =>
+                `${participant.firstName} ${participant.lastName}`,
+            )
+            .join(', '),
           message: values.message,
         },
         process.env.GATSBY_EMAILJS_PUBLIC_KEY!,
@@ -108,7 +132,10 @@ const RSVPForm = ({
 
       {!confirmed && (
         <Formik
-          initialValues={{ participants: participants, message: '' }}
+          initialValues={{
+            participants: getParticipantsFromURL(),
+            message: '',
+          }}
           validationSchema={validationSchema}
           enableReinitialize
           onSubmit={handleSubmit}
@@ -133,87 +160,62 @@ const RSVPForm = ({
                 </Typography>
               </div>
               <Form>
-                {values.participants.map((participant, index) => {
-                  const [firstName, ...lastName] = participant.split(' ')
-                  const lastNameValue = lastName.join(' ')
-                  return (
-                    <div key={index} className="flex flex-col gap-4">
-                      <div className="flex flex-col md:flex-row gap-4">
-                        <TextField
-                          type="text"
-                          name={`participants.${index}`}
-                          label="Nome"
-                          placeholder="Inserisci nome partecipante"
-                          value={firstName}
-                          onChange={(e) => {
-                            const updatedParticipants = [...values.participants]
-                            updatedParticipants[index] =
-                              `${e.target.value} ${lastNameValue}`
-                            handleChange({
-                              target: {
-                                name: 'participants',
-                                value: updatedParticipants,
-                              },
-                            })
-                          }}
-                          fullWidth
-                        />
-                        <ErrorMessage
-                          name={`participants.${index}`}
-                          component="div"
-                          className="text-red-500 text-sm"
-                        />
-                        <TextField
-                          type="text"
-                          label="Cognome"
-                          placeholder="Inserisci cognome partecipante"
-                          value={lastNameValue}
-                          onChange={(e) => {
-                            const updatedParticipants = [...values.participants]
-                            updatedParticipants[index] =
-                              `${firstName} ${e.target.value}`
-                            handleChange({
-                              target: {
-                                name: 'participants',
-                                value: updatedParticipants,
-                              },
-                            })
-                          }}
-                          fullWidth
-                        />
-                        <ErrorMessage
-                          name={`participants.${index}`}
-                          component="div"
-                          className="text-red-500 text-sm"
-                        />
-                      </div>
-                      {values.participants.length > 1 && (
-                        <div className="flex items-center my-3">
-                          <Button
-                            type="button"
-                            onClick={() => {
-                              const updatedParticipants = [
-                                ...values.participants,
-                              ]
-                              updatedParticipants.splice(index, 1)
-                              updateParticipants(updatedParticipants)
-                              handleChange({
-                                target: {
-                                  name: 'participants',
-                                  value: updatedParticipants,
-                                },
-                              })
-                            }}
-                            variant="outlined"
-                            color="error"
-                          >
-                            Rimuovi
-                          </Button>
-                        </div>
-                      )}
+                {values.participants.map((participant, index) => (
+                  <div key={index} className="flex flex-col gap-4">
+                    <div className="flex flex-col md:flex-row gap-4">
+                      <TextField
+                        type="text"
+                        name={`participants.${index}.firstName`}
+                        label="Nome"
+                        placeholder="Inserisci nome partecipante"
+                        value={participant.firstName}
+                        onChange={handleChange}
+                        fullWidth
+                      />
+                      <ErrorMessage
+                        name={`participants.${index}.firstName`}
+                        component="div"
+                        className="text-red-500 text-sm"
+                      />
+                      <TextField
+                        type="text"
+                        label="Cognome"
+                        name={`participants.${index}.lastName`}
+                        placeholder="Inserisci cognome partecipante"
+                        value={participant.lastName}
+                        onChange={handleChange}
+                        fullWidth
+                      />
+                      <ErrorMessage
+                        name={`participants.${index}.lastName`}
+                        component="div"
+                        className="text-red-500 text-sm"
+                      />
                     </div>
-                  )
-                })}
+                    {values.participants.length > 1 && (
+                      <div className="flex items-center my-3">
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            const updatedParticipants = [...values.participants]
+                            updatedParticipants.splice(index, 1)
+                            updateParticipants(updatedParticipants)
+                            handleChange({
+                              target: {
+                                name: 'participants',
+                                value: updatedParticipants,
+                              },
+                            })
+                          }}
+                          variant="outlined"
+                          color="error"
+                        >
+                          Rimuovi
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                ))}
 
                 {values.participants.length < 10 && (
                   <div className="flex items-center my-2">
@@ -223,10 +225,16 @@ const RSVPForm = ({
                         handleChange({
                           target: {
                             name: 'participants',
-                            value: [...values.participants, ''],
+                            value: [
+                              ...values.participants,
+                              { firstName: '', lastName: '' },
+                            ],
                           },
                         })
-                        updateParticipants([...values.participants, ''])
+                        updateParticipants([
+                          ...values.participants,
+                          { firstName: '', lastName: '' },
+                        ])
                       }}
                       variant="outlined"
                       color="success"
