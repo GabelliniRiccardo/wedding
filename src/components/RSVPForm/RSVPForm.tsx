@@ -116,12 +116,12 @@ const RSVPForm = ({
 
       {!confirmed && (
         <Formik
+          key={participants.length}
           initialValues={{
             participants: participants,
             message: '',
           }}
           validationSchema={validationSchema}
-          enableReinitialize
           onSubmit={handleSubmit}
         >
           {({ values, handleChange, handleBlur, isValid, errors, touched }) => (
