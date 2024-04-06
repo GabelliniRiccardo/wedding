@@ -4,6 +4,7 @@ import { motion, useInView } from 'framer-motion'
 import type { HeadFC, PageProps } from 'gatsby'
 import Layout from '../components/Layout/Layout'
 import coupleImg from '../images/couple.jpg'
+import batmanDance from '../images/batman-dance.gif'
 import WhenAndWhere from '../components/WhenAndWhere/WhenAndWhere'
 import HowToGiveUsAPresent from '../components/HowToGiveUsAPresent/HowToGiveUsAPresent'
 import RSVPForm from '../components/RSVPForm/RSVPForm'
@@ -66,7 +67,7 @@ const IndexPage: React.FC<PageProps> = () => {
         </div>
       </motion.section>
 
-      <div className="container mx-auto my-8 px-1">
+      <div className="container mx-auto mt-8 px-1">
         <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-20">
           <motion.div
             className="w-full"
@@ -145,6 +146,7 @@ const IndexPage: React.FC<PageProps> = () => {
           </div>
         )}
       </div>
+      <img src={batmanDance} alt="BatmanDance" className="w-20 h-20 mx-auto" />
     </Layout>
   )
 }
