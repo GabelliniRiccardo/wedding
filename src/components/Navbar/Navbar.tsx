@@ -22,6 +22,9 @@ const customTheme = createTheme({
       contrastText: '#fff',
     },
   },
+  typography: {
+    fontFamily: 'TiltNeon-Regular',
+  },
 })
 
 const menuItems = [

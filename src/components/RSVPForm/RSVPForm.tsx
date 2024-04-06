@@ -138,10 +138,6 @@ const RSVPForm = ({
                     chiediamo di confermarla di seguito
                   </Typography>
                 )}
-
-                <Typography variant="body1">
-                  Se ci siamo dimenticati qualcuno aggiungilo pure
-                </Typography>
               </div>
               <Form>
                 {values.participants.map((participant, index) => (
@@ -240,6 +236,11 @@ const RSVPForm = ({
                     </Button>
                   </div>
                 )}
+
+                <Typography variant="body1" className="mt-8 mb-3">
+                  <span>Se ci siamo dimenticati qualcuno aggiungilo pure </span>
+                  <span className="text-red-400">(Davvero eh!)</span>
+                </Typography>
 
                 <TextField
                   error={Boolean(errors.message)}
