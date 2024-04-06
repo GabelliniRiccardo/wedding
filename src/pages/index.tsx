@@ -9,6 +9,7 @@ import HowToGiveUsAPresent from '../components/HowToGiveUsAPresent/HowToGiveUsAP
 import RSVPForm from '../components/RSVPForm/RSVPForm'
 import queryString from 'query-string'
 import { useLocation } from '@reach/router'
+import { Participant } from '../models/Participant'
 
 const IndexPage: React.FC<PageProps> = () => {
   const whenAndWhereRef = useRef(null)
@@ -23,17 +24,26 @@ const IndexPage: React.FC<PageProps> = () => {
   })
 
   const location = useLocation()
-  const [participants, setParticipants] = useState<string[]>([])
+  const [participants, setParticipants] = useState<Participant[]>([])
 
   useEffect(() => {
     const queryParams = queryString.parse(location.search)
     let participantsFromQuery = queryParams.participants || ''
+
     if (Array.isArray(participantsFromQuery)) {
       participantsFromQuery = participantsFromQuery.join(',')
     }
+
     const participantsArray = participantsFromQuery.split(',')
     const participants = participantsArray.length > 0 ? participantsArray : ['']
-    setParticipants(participants)
+
+    const participantsData = participants.map((participant) => {
+      const [firstName, ...lastName] = participant.split(' ')
+      const lastNameValue = lastName.join(' ')
+      return { firstName, lastName: lastNameValue }
+    })
+
+    setParticipants(participantsData)
   }, [location.search])
 
   return (
@@ -106,7 +116,7 @@ const IndexPage: React.FC<PageProps> = () => {
         </div>
 
         <RSVPForm
-          updateParticipants={(newValue: string[]) => {
+          updateParticipants={(newValue: Participant[]) => {
             setParticipants(newValue)
           }}
           participants={participants}

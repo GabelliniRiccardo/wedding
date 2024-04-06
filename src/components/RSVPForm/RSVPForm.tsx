@@ -13,6 +13,7 @@ import emailjs from '@emailjs/browser'
 import gifImageDance from '../../images/dance.gif'
 import gifImageSleep from '../../images/sleep.gif'
 import weddingCouple from '../../images/wedding-couple.gif'
+import { Participant } from '../../models/Participant'
 
 const validationSchema = Yup.object().shape({
   participants: Yup.array()
@@ -28,11 +29,11 @@ const validationSchema = Yup.object().shape({
 })
 
 const RSVPForm = ({
+  participants,
   updateParticipants,
 }: {
-  updateParticipants: (
-    newValue: { firstName: string; lastName: string }[],
-  ) => void
+  participants: Participant[]
+  updateParticipants: (newValue: Participant[]) => void
 }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -50,24 +51,8 @@ const RSVPForm = ({
     }
   }, [])
 
-  const getParticipantsFromURL = () => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const participantsParam = urlParams.get('participants')
-    if (participantsParam) {
-      const participantsData = participantsParam
-        .split(',')
-        .map((participant) => {
-          const [firstName, ...lastName] = participant.split(' ')
-          const lastNameValue = lastName.join(' ')
-          return { firstName, lastName: lastNameValue }
-        })
-      return participantsData
-    }
-    return []
-  }
-
   const handleSubmit = async (values: {
-    participants: { firstName: string; lastName: string }[]
+    participants: Participant[]
     message: string
   }) => {
     try {
@@ -128,7 +113,7 @@ const RSVPForm = ({
       {!confirmed && (
         <Formik
           initialValues={{
-            participants: getParticipantsFromURL(),
+            participants: participants,
             message: '',
           }}
           validationSchema={validationSchema}
