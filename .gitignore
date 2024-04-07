@@ -20,3 +20,6 @@ src/gatsby-types.d.ts
 .env.*
 # Local Netlify folder
 .netlify
+/qrCodesWedding/.idea/
+/qrCodesWedding/qrcodes/
+/qrCodesWedding/Qr codes.xlsx
