@@ -81,6 +81,9 @@ const Welcome = () => {
 
   return (
     <Layout showNavbar={false}>
+      <link rel="preload" href={rings} as="image" />
+      <link rel="preload" href={handToHand} as="image" />
+
       <div className="h-full flex flex-col sm:mt-0 items-center justify-center text-center">
         {usernames.length && (
           <div
