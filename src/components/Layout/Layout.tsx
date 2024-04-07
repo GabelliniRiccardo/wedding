@@ -18,6 +18,18 @@ const customTheme = createTheme({
   },
 })
 
+const transitionVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 2.5,
+    },
+  },
+}
+
 const Layout: React.FC<{ children: ReactNode; showNavbar: boolean }> = ({
   children,
   showNavbar,
@@ -28,12 +40,11 @@ const Layout: React.FC<{ children: ReactNode; showNavbar: boolean }> = ({
   return (
     <AnimatePresence>
       <motion.div
-        key="layout"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 3, ease: 'easeInOut' }}
-        className="h-full"
+        key="page"
+        initial="initial"
+        animate="animate"
+        variants={transitionVariants}
+        style={{ width: '100%', height: '100%' }}
       >
         <ThemeProvider theme={customTheme}>
           {showNavbar && <Navbar />}
