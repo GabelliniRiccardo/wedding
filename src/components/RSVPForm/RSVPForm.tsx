@@ -264,12 +264,6 @@ const RSVPForm = ({
                   fullWidth
                   variant="outlined"
                 />
-                <ErrorMessage
-                  name="message"
-                  component="div"
-                  className="text-red-500 text-sm"
-                />
-
                 <div className="flex justify-center mt-4">
                   <Button
                     type="submit"
