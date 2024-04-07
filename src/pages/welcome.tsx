@@ -7,7 +7,7 @@ import { ArrowDownwardSharp } from '@mui/icons-material'
 
 import rings from '../images/rings.jpg'
 import handToHand from '../images/hand-to-hand.jpeg'
-import { Link } from 'gatsby'
+import { type HeadFC, Link } from 'gatsby'
 import { Button } from '@mui/material'
 import { variants } from '../constants'
 
@@ -81,9 +81,6 @@ const Welcome = () => {
 
   return (
     <Layout showNavbar={false}>
-      <link rel="preload" href={rings} as="image" />
-      <link rel="preload" href={handToHand} as="image" />
-
       <div className="h-full flex flex-col sm:mt-0 items-center justify-center text-center">
         {usernames.length && (
           <div
@@ -179,3 +176,11 @@ const Welcome = () => {
 }
 
 export default Welcome
+
+export const Head: HeadFC = () => (
+  <head>
+    <title>Wedding Riccardo & Chiara</title>
+    <link rel="preload" href={rings} as="image" />
+    <link rel="preload" href={handToHand} as="image" />
+  </head>
+)

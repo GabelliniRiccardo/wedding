@@ -163,4 +163,11 @@ const IndexPage: React.FC<PageProps> = () => {
 
 export default IndexPage
 
-export const Head: HeadFC = () => <title>Wedding Riccardo & Chiara</title>
+export const Head: HeadFC = () => (
+  <head>
+    <title>Wedding Riccardo & Chiara</title>
+    <link rel="preload" href={coupleImg} as="image" />
+    <link rel="preload" href={couple2Img} as="image" />
+    <link rel="preload" href={couple3Img} as="image" />
+  </head>
+)
