@@ -14,8 +14,6 @@ import gifImageDance from '../../images/dance.gif'
 import gifImageSleep from '../../images/sleep.gif'
 import weddingCouple from '../../images/wedding-couple.gif'
 import { Participant } from '../../models/Participant'
-import { StaticImage } from 'gatsby-plugin-image'
-import gifImage from '../../images/present.gif'
 
 const validationSchema = Yup.object().shape({
   participants: Yup.array()

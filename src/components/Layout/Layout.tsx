@@ -1,5 +1,5 @@
 // Layout.tsx
-import React, { Fragment, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from '../Navbar/Navbar'
 import Footer from '../Footer/Footer'
