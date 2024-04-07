@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { ErrorMessage, Form, Formik } from 'formik'
+import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import {
   Button,
@@ -113,168 +113,186 @@ const RSVPForm = ({
           <img src={gifImageSleep} alt="GIF" className="max-w-24" />
         </div>
       ) : (
-        <Formik
-          initialValues={{
-            participants: participants,
-            message: '',
-          }}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ values, handleChange, handleBlur, isValid, errors, touched }) => (
-            <Form>
-              <div className="my-8">
-                {values.participants.length > 1 ? (
-                  <Typography variant="body1">
-                    La vostra presenza per noi è fondamentale, per questo vi
-                    chiediamo di confermarla di seguito
-                  </Typography>
-                ) : (
-                  <Typography variant="body1">
-                    La tua presenza per noi è fondamentale, per questo ti
-                    chiediamo di confermarla di seguito
-                  </Typography>
-                )}
-              </div>
-              {values.participants.map((participant, index) => (
-                <div key={index} className="flex flex-col gap-4">
-                  <div className="flex flex-col md:flex-row gap-4">
-                    <TextField
-                      error={Boolean(
-                        errors.participants &&
-                          errors.participants[index] &&
-                          touched.participants &&
-                          touched.participants[index] &&
-                          errors.participants[index].firstName,
-                      )}
-                      id={`outlined-firstName-${index}`}
-                      name={`participants.${index}.firstName`}
-                      label="Nome"
-                      placeholder="Inserisci nome partecipante"
-                      value={participant.firstName}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      fullWidth
-                      variant="outlined"
-                      helperText={
-                        errors.participants &&
-                        errors.participants[index] &&
-                        touched.participants &&
-                        touched.participants[index] &&
-                        (errors.participants[index].firstName || '')
-                      }
-                    />
-                    <TextField
-                      error={Boolean(
-                        errors.participants &&
-                          errors.participants[index] &&
-                          touched.participants &&
-                          touched.participants[index] &&
-                          errors.participants[index].lastName,
-                      )}
-                      id={`outlined-lastName-${index}`}
-                      name={`participants.${index}.lastName`}
-                      label="Cognome"
-                      placeholder="Inserisci cognome partecipante"
-                      value={participant.lastName}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      fullWidth
-                      variant="outlined"
-                      helperText={
-                        errors.participants &&
-                        errors.participants[index] &&
-                        touched.participants &&
-                        touched.participants[index] &&
-                        (errors.participants[index].lastName || '')
-                      }
-                    />
+        <Fragment>
+          {participants.length > 0 ? (
+            <Formik
+              initialValues={{
+                participants: participants,
+                message: '',
+              }}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+            >
+              {({
+                values,
+                handleChange,
+                handleBlur,
+                isValid,
+                errors,
+                touched,
+              }) => (
+                <Form>
+                  <div className="my-8">
+                    {values.participants.length > 1 ? (
+                      <Typography variant="body1">
+                        La vostra presenza per noi è fondamentale, per questo vi
+                        chiediamo di confermarla di seguito
+                      </Typography>
+                    ) : (
+                      <Typography variant="body1">
+                        La tua presenza per noi è fondamentale, per questo ti
+                        chiediamo di confermarla di seguito
+                      </Typography>
+                    )}
                   </div>
-                  {values.participants.length > 1 && (
-                    <div className="flex items-center my-3">
+                  {values.participants.map((participant, index) => (
+                    <div key={index} className="flex flex-col gap-4">
+                      <div className="flex flex-col md:flex-row gap-4">
+                        <TextField
+                          error={Boolean(
+                            errors.participants &&
+                              errors.participants[index] &&
+                              touched.participants &&
+                              touched.participants[index] &&
+                              errors.participants[index].firstName,
+                          )}
+                          id={`outlined-firstName-${index}`}
+                          name={`participants.${index}.firstName`}
+                          label="Nome"
+                          placeholder="Inserisci nome partecipante"
+                          value={participant.firstName}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          fullWidth
+                          variant="outlined"
+                          helperText={
+                            errors.participants &&
+                            errors.participants[index] &&
+                            touched.participants &&
+                            touched.participants[index] &&
+                            (errors.participants[index].firstName || '')
+                          }
+                        />
+                        <TextField
+                          error={Boolean(
+                            errors.participants &&
+                              errors.participants[index] &&
+                              touched.participants &&
+                              touched.participants[index] &&
+                              errors.participants[index].lastName,
+                          )}
+                          id={`outlined-lastName-${index}`}
+                          name={`participants.${index}.lastName`}
+                          label="Cognome"
+                          placeholder="Inserisci cognome partecipante"
+                          value={participant.lastName}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          fullWidth
+                          variant="outlined"
+                          helperText={
+                            errors.participants &&
+                            errors.participants[index] &&
+                            touched.participants &&
+                            touched.participants[index] &&
+                            (errors.participants[index].lastName || '')
+                          }
+                        />
+                      </div>
+                      {values.participants.length > 1 && (
+                        <div className="flex items-center my-3">
+                          <Button
+                            type="button"
+                            onClick={() => {
+                              const updatedParticipants = [
+                                ...values.participants,
+                              ]
+                              updatedParticipants.splice(index, 1)
+                              updateParticipants(updatedParticipants)
+                              handleChange({
+                                target: {
+                                  name: 'participants',
+                                  value: updatedParticipants,
+                                },
+                              })
+                            }}
+                            variant="outlined"
+                            color="error"
+                          >
+                            Rimuovi
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                  {values.participants.length < 10 && (
+                    <div className="flex items-center my-2">
                       <Button
                         type="button"
                         onClick={() => {
-                          const updatedParticipants = [...values.participants]
-                          updatedParticipants.splice(index, 1)
-                          updateParticipants(updatedParticipants)
                           handleChange({
                             target: {
                               name: 'participants',
-                              value: updatedParticipants,
+                              value: [
+                                ...values.participants,
+                                { firstName: '', lastName: '' },
+                              ],
                             },
                           })
+                          updateParticipants([
+                            ...values.participants,
+                            { firstName: '', lastName: '' },
+                          ])
                         }}
                         variant="outlined"
-                        color="error"
+                        color="success"
+                        className="mt-2"
                       >
-                        Rimuovi
+                        Aggiungi Partecipante
                       </Button>
                     </div>
                   )}
-                </div>
-              ))}
-              {values.participants.length < 10 && (
-                <div className="flex items-center my-2">
-                  <Button
-                    type="button"
-                    onClick={() => {
-                      handleChange({
-                        target: {
-                          name: 'participants',
-                          value: [
-                            ...values.participants,
-                            { firstName: '', lastName: '' },
-                          ],
-                        },
-                      })
-                      updateParticipants([
-                        ...values.participants,
-                        { firstName: '', lastName: '' },
-                      ])
-                    }}
+                  <Typography variant="body1" className="mt-8 mb-3">
+                    <span>I "plus one" sono i benvenuti!</span>
+                    <span className="text-red-400">(Davvero eh!)</span>
+                  </Typography>
+                  <TextField
+                    error={Boolean(errors.message)}
+                    id="outlined-message"
+                    name={`message`}
+                    label="Messaggio"
+                    placeholder="Inserisci il messaggio"
+                    value={values.message}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    fullWidth
                     variant="outlined"
-                    color="success"
-                    className="mt-2"
-                  >
-                    Aggiungi Partecipante
-                  </Button>
-                </div>
+                  />
+                  <div className="flex justify-center mt-4">
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      disabled={!isValid || loading}
+                    >
+                      {loading ? (
+                        <CircularProgress size={24} color="inherit" />
+                      ) : (
+                        'Invia'
+                      )}
+                    </Button>
+                  </div>
+                </Form>
               )}
-              <Typography variant="body1" className="mt-8 mb-3">
-                <span>I "plus one" sono i benvenuti!</span>
-                <span className="text-red-400">(Davvero eh!)</span>
-              </Typography>
-              <TextField
-                error={Boolean(errors.message)}
-                id="outlined-message"
-                name={`message`}
-                label="Messaggio"
-                placeholder="Inserisci il messaggio"
-                value={values.message}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                fullWidth
-                variant="outlined"
-              />
-              <div className="flex justify-center mt-4">
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  disabled={!isValid || loading}
-                >
-                  {loading ? (
-                    <CircularProgress size={24} color="inherit" />
-                  ) : (
-                    'Invia'
-                  )}
-                </Button>
-              </div>
-            </Form>
+            </Formik>
+          ) : (
+            <Typography variant="body1">
+              Nessun partecipante disponibile al momento.
+            </Typography>
           )}
-        </Formik>
+        </Fragment>
       )}
+
       <Modal
         open={showSuccessModal || !!error}
         onClose={() => setShowSuccessModal(false)}
