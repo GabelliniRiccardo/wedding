@@ -1,7 +1,7 @@
 import * as React from 'react'
+import { Fragment } from 'react'
 import gifImage from '../../images/pandas.gif'
 import GoogleMaps from '../GoogleMaps/GoogleMaps'
-import { Fragment } from 'react'
 
 const WhenAndWhere = () => {
   return (

@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { Tooltip } from '@mui/material'
+import React from 'react'
 import gifImage from '../../images/present.gif'
 import CopyableText from '../CopyableText/CopyableText'
 

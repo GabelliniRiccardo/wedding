@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import type { HeadFC, PageProps } from 'gatsby'
 import Layout from '../components/Layout/Layout'
-import coupleImg from '../images/couple.jpg'
 import batmanDance from '../images/batman-dance.gif'
 import WhenAndWhere from '../components/WhenAndWhere/WhenAndWhere'
 import HowToGiveUsAPresent from '../components/HowToGiveUsAPresent/HowToGiveUsAPresent'
@@ -11,6 +10,7 @@ import RSVPForm from '../components/RSVPForm/RSVPForm'
 import queryString from 'query-string'
 import { useLocation } from '@reach/router'
 import { Participant } from '../models/Participant'
+import { StaticImage } from 'gatsby-plugin-image'
 
 const IndexPage: React.FC<PageProps> = () => {
   const whenAndWhereRef = useRef(null)
@@ -52,11 +52,21 @@ const IndexPage: React.FC<PageProps> = () => {
       <motion.section
         className="h-screen relative"
         style={{
-          backgroundImage: `url(${coupleImg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          position: 'relative', // Assicurati di impostare la posizione a relativa per far sì che l'immagine di sfondo sia allineata correttamente
         }}
       >
+        <StaticImage
+          src="../images/couple.jpg"
+          alt="Couple"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+          }}
+        />
+
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="text-center text-white">
             <h1 className="text-5xl md:text-8xl font-bold mb-4 text-wrap">
@@ -87,16 +97,16 @@ const IndexPage: React.FC<PageProps> = () => {
           </motion.div>
 
           <div className="flex flex-col justify-items-center rounded-lg shadow-lg my-auto">
-            <img
-              src={coupleImg}
+            <StaticImage
+              src="../images/couple.jpg"
               alt="First Wedding Image"
               className="rounded-t-md"
             />
             <div className="p-4">07/04/2013 l'inizio....</div>
           </div>
 
-          <img
-            src={coupleImg}
+          <StaticImage
+            src="../images/couple.jpg"
             alt="Couple"
             className="w-96 h-96 rounded-full shadow-lg object-cover my-auto"
           />
