@@ -51,17 +51,31 @@ const HowToGiveUsAPresent = ({
         <div className="flex gap-1 mt-8">
           <div className="mt-4">
             <p className="font-bold">Beneficiario:</p>
-            <CopyableText>{process.env.GATSBY_BANK_ACCOUNT_OWNER}</CopyableText>
+            <CopyableText>
+              <span className="text-lg">
+                {process.env.GATSBY_BANK_ACCOUNT_OWNER}
+              </span>
+            </CopyableText>
             <p className="font-bold mt-2">Indirizzo Banca:</p>
-            <CopyableText>{process.env.GATSBY_BANK_BANK_NAME}</CopyableText>
+            <CopyableText>
+              <span className="text-lg">
+                {process.env.GATSBY_BANK_BANK_NAME}
+              </span>
+            </CopyableText>
             <p className="font-bold mt-2">IBAN:</p>
             <CopyableText removeSpaces>
-              {process.env.GATSBY_BANK_IBAN}
+              <span className="text-lg">{process.env.GATSBY_BANK_IBAN}</span>
             </CopyableText>
             <p className="font-bold mt-2">Codice SWIFT/BIC:</p>
-            <CopyableText>{process.env.GATSBY_BANK_SWIFT_BIC}</CopyableText>
+            <CopyableText>
+              <span className="text-lg">
+                {process.env.GATSBY_BANK_SWIFT_BIC}
+              </span>
+            </CopyableText>
             <p className="font-bold mt-2">Causale:</p>
-            <CopyableText>{process.env.GATSBY_BANK_CAUSALE}</CopyableText>
+            <CopyableText>
+              <span className="text-lg">{process.env.GATSBY_BANK_CAUSALE}</span>
+            </CopyableText>
           </div>
         </div>
       </div>
