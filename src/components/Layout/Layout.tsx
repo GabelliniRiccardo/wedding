@@ -25,7 +25,7 @@ const transitionVariants = {
   animate: {
     opacity: 1,
     transition: {
-      duration: 2.5,
+      duration: 0.5,
     },
   },
 }
