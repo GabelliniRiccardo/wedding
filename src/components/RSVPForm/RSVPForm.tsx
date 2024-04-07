@@ -255,10 +255,12 @@ const RSVPForm = ({
                       </Button>
                     </div>
                   )}
-                  <Typography variant="body1" className="mt-8 mb-3">
-                    <span>I "plus one" sono i benvenuti!</span>
-                    <span className="text-red-400">(Davvero eh!)</span>
-                  </Typography>
+                  <div className="my-8 mb-3">
+                    <span>
+                      I <i>"plus one"</i> sono i benvenuti!
+                    </span>
+                    <span className="text-red-400"> (Davvero eh!)</span>
+                  </div>
                   <TextField
                     error={Boolean(errors.message)}
                     id="outlined-message"
