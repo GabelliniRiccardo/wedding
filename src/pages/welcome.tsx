@@ -84,7 +84,7 @@ const Welcome = () => {
       <div className="h-full flex flex-col sm:mt-0 items-center justify-center text-center">
         {usernames.length && (
           <div
-            className="relative w-full"
+            className="relative w-full px-2"
             style={{
               backgroundImage: `url(${rings})`,
               backgroundSize: 'cover',
