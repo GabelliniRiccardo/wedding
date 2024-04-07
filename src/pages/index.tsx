@@ -108,7 +108,7 @@ const IndexPage: React.FC<PageProps> = () => {
           <StaticImage
             src="../images/couple.jpg"
             alt="Couple"
-            className="w-96 h-96 rounded-full shadow-lg object-cover my-auto"
+            className="w-full md:w-96 md:h-96 rounded-full shadow-lg object-cover my-auto"
           />
 
           <motion.div
