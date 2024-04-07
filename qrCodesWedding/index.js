@@ -32,7 +32,7 @@ async function generateQRCodeFromExcel(filename) {
   }
 }
 
-const excelFilename = 'Qr codes.xlsx'
+const excelFilename = 'qr_codes.xlsx'
 
 const qrCodesDir = './qrcodes'
 if (fs.existsSync(qrCodesDir)) {
