@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from '../Navbar/Navbar'
 import Footer from '../Footer/Footer'
 import { createTheme, ThemeProvider } from '@mui/material'
-import type { HeadFC } from 'gatsby'
 
 const customTheme = createTheme({
   palette: {
@@ -28,6 +27,12 @@ const transitionVariants = {
       duration: 0.5,
     },
   },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
 }
 
 const Layout: React.FC<{ children: ReactNode; showNavbar: boolean }> = ({
@@ -38,7 +43,7 @@ const Layout: React.FC<{ children: ReactNode; showNavbar: boolean }> = ({
   showNavbar: boolean
 }) => {
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       <motion.div
         key="page"
         initial="initial"
