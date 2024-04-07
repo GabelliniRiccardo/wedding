@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from '../Navbar/Navbar'
 import Footer from '../Footer/Footer'
 import { createTheme, ThemeProvider } from '@mui/material'
+import type { HeadFC } from 'gatsby'
 
 const customTheme = createTheme({
   palette: {

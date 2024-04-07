@@ -180,7 +180,5 @@ export default Welcome
 export const Head: HeadFC = () => (
   <head>
     <title>Wedding Riccardo & Chiara</title>
-    <link rel="preload" href={rings} as="image" />
-    <link rel="preload" href={handToHand} as="image" />
   </head>
 )
