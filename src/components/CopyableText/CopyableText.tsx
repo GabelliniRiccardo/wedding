@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Tooltip } from '@mui/material'
+import { Button, Tooltip } from '@mui/material'
 
 interface CopyableTextProps {
   children: React.ReactNode
@@ -19,18 +19,28 @@ const CopyableText: React.FC<CopyableTextProps> = ({
         : children.toString()
       navigator.clipboard.writeText(textToCopy)
       setCopySuccess(true)
-      setTimeout(() => setCopySuccess(false), 2000) // Reset copy success message after 2 seconds
+      setTimeout(() => setCopySuccess(false), 1500)
     }
   }
 
   return (
-    <Tooltip title={copySuccess ? 'Copiato!' : 'Clicca per copiare'} arrow>
-      <p
-        className="text-lg cursor-pointer text-blue-700"
+    <Tooltip
+      title={copySuccess ? 'Copiato!' : 'Clicca per copiare'}
+      arrow
+      PopperProps={{
+        disablePortal: true,
+      }}
+      open={copySuccess}
+      disableFocusListener
+      disableHoverListener
+      disableTouchListener
+    >
+      <Button
         onClick={copyToClipboard}
+        style={{ color: 'royalblue', padding: 0 }}
       >
         {children}
-      </p>
+      </Button>
     </Tooltip>
   )
 }
