@@ -248,7 +248,7 @@ const RSVPForm = ({
                 )}
 
                 <Typography variant="body1" className="mt-8 mb-3">
-                  <span>Se ci siamo dimenticati qualcuno aggiungilo pure </span>
+                  <span>I "plus one" sono i benvenuti!</span>
                   <span className="text-red-400">(Davvero eh!)</span>
                 </Typography>
 
