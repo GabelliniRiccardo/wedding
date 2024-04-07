@@ -1,24 +1,13 @@
 import React, { useState } from 'react'
 import { Tooltip } from '@mui/material'
 import gifImage from '../../images/present.gif'
+import CopyableText from '../CopyableText/CopyableText'
 
 const HowToGiveUsAPresent = ({
   isSingleParticipant,
 }: {
   isSingleParticipant: boolean
 }) => {
-  const iban = process.env.GATSBY_BANK_IBAN
-  const [copySuccess, setCopySuccess] = useState(false)
-
-  const copyToClipboard = () => {
-    const ibanWithoutSpaces = iban?.replace(/\s/g, '')
-    navigator.clipboard.writeText(ibanWithoutSpaces ?? '')
-    setCopySuccess(true)
-    setTimeout(() => {
-      setCopySuccess(false)
-    }, 3000)
-  }
-
   return (
     <div className="bg-orange-400 bg-opacity-25 p-6 rounded-lg shadow-lg h-full">
       <div className="flex flex-col justify-between items-center mb-8 text-lg gap-3">
@@ -56,32 +45,22 @@ const HowToGiveUsAPresent = ({
 
         <div className="flex justify-between items-center">
           <p className="mt-8">
-            P.s. se si clicca l'IBAN viene automaticamente copiato
+            P.s. tutti ci campi in blu sono copiabili con un semplice click!
           </p>
           <img src={gifImage} alt="GIF" className="max-w-24" />
         </div>
         <div className="flex gap-1 mt-8">
           <div className="mt-4">
             <p className="font-bold">Beneficiario:</p>
-            <p>{process.env.GATSBY_BANK_ACCOUNT_OWNER}</p>
+            <CopyableText>{process.env.GATSBY_BANK_ACCOUNT_OWNER}</CopyableText>
             <p className="font-bold mt-2">Indirizzo Banca:</p>
-            <p>{process.env.GATSBY_BANK_BANK_NAME}</p>
+            <CopyableText>{process.env.GATSBY_BANK_BANK_NAME}</CopyableText>
             <p className="font-bold mt-2">IBAN:</p>
-            <Tooltip
-              title={copySuccess ? 'Copiato!' : 'Clicca per copiare'}
-              arrow
-            >
-              <p
-                className="text-lg cursor-pointer text-blue-500"
-                onClick={copyToClipboard}
-              >
-                {iban}
-              </p>
-            </Tooltip>
+            <CopyableText>{process.env.GATSBY_BANK_IBAN}</CopyableText>
             <p className="font-bold mt-2">Codice SWIFT/BIC:</p>
-            <p>{process.env.GATSBY_BANK_SWIFT_BIC}</p>
+            <CopyableText>{process.env.GATSBY_BANK_SWIFT_BIC}</CopyableText>
             <p className="font-bold mt-2">Causale:</p>
-            <p>{process.env.GATSBY_BANK_CAUSALE}</p>
+            <CopyableText>{process.env.GATSBY_BANK_CAUSALE}</CopyableText>
           </div>
         </div>
       </div>
