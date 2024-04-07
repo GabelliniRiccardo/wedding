@@ -32,7 +32,7 @@ const Layout: React.FC<{ children: ReactNode; showNavbar: boolean }> = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 2, ease: 'easeInOut' }}
+        transition={{ duration: 3, ease: 'easeInOut' }}
         className="h-full"
       >
         <ThemeProvider theme={customTheme}>
