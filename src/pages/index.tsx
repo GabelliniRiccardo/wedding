@@ -51,10 +51,6 @@ const IndexPage: React.FC<PageProps> = () => {
 
   return (
     <Layout showNavbar={true}>
-      <link rel="preload" href={coupleImg} as="image" />
-      <link rel="preload" href={couple2Img} as="image" />
-      <link rel="preload" href={couple3Img} as="image" />
-
       <motion.section
         className="h-screen relative"
         style={{
