@@ -59,10 +59,14 @@ const IndexPage: React.FC<PageProps> = () => {
       >
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="text-center text-white">
-            <h1 className="text-8xl font-bold mb-4 text-wrap">
-              Riccardo & Chiara
+            <h1 className="text-5xl md:text-8xl font-bold mb-4 text-wrap">
+              <span className="block md:inline">Riccardo </span>
+              <span className="block md:inline">& </span>
+              <span className="block md:inline">Chiara </span>
             </h1>
-            <h2 className="text-3xl font-medium">7 Settembre 2024</h2>
+            <h2 className="text-2xl md:text-3xl font-medium">
+              7 Settembre 2024
+            </h2>
           </div>
         </div>
       </motion.section>
