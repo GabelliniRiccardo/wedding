@@ -274,7 +274,7 @@ const RSVPForm = ({
                     {loading ? (
                       <CircularProgress size={24} color="inherit" />
                     ) : (
-                      'Invia'
+                      'Conferma'
                     )}
                   </Button>
                 </div>
