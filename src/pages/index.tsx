@@ -77,7 +77,7 @@ const IndexPage: React.FC<PageProps> = () => {
         </div>
       </motion.section>
 
-      <div className="container mx-auto mt-8 px-1">
+      <div className="container px-2 mx-auto mt-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-20">
           <motion.div
             className="w-full"
