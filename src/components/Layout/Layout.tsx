@@ -36,7 +36,7 @@ const Layout: React.FC<{ children: ReactNode; showNavbar: boolean }> = ({
       >
         <ThemeProvider theme={customTheme}>
           {showNavbar && <Navbar />}
-          <main className={`min-h-full`}>{children}</main>
+          <main className="min-h-full">{children}</main>
           <Footer />
         </ThemeProvider>
       </motion.div>
