@@ -56,7 +56,9 @@ const HowToGiveUsAPresent = ({
             <p className="font-bold mt-2">Indirizzo Banca:</p>
             <CopyableText>{process.env.GATSBY_BANK_BANK_NAME}</CopyableText>
             <p className="font-bold mt-2">IBAN:</p>
-            <CopyableText>{process.env.GATSBY_BANK_IBAN}</CopyableText>
+            <CopyableText removeSpaces>
+              {process.env.GATSBY_BANK_IBAN}
+            </CopyableText>
             <p className="font-bold mt-2">Codice SWIFT/BIC:</p>
             <CopyableText>{process.env.GATSBY_BANK_SWIFT_BIC}</CopyableText>
             <p className="font-bold mt-2">Causale:</p>
