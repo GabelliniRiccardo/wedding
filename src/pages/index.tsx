@@ -113,12 +113,14 @@ const IndexPage: React.FC<PageProps> = () => {
           </motion.div>
         </div>
 
-        <RSVPForm
-          updateParticipants={(newValue: Participant[]) => {
-            setParticipants(newValue)
-          }}
-          participants={participants}
-        />
+        {participants.length && (
+          <RSVPForm
+            updateParticipants={(newValue: Participant[]) => {
+              setParticipants(newValue)
+            }}
+            participants={participants}
+          />
+        )}
 
         {participants.length > 1 ? (
           <div className="text-center">
