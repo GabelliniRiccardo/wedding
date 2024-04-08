@@ -12,11 +12,24 @@ const CopyableText: React.FC<CopyableTextProps> = ({
 }) => {
   const [copySuccess, setCopySuccess] = useState(false)
 
+  const getTextContent = (element: React.ReactNode): string => {
+    if (typeof element === 'string') {
+      return element
+    }
+    if (Array.isArray(element)) {
+      return element.map(getTextContent).join('')
+    }
+    if (React.isValidElement(element) && element.props.children) {
+      return getTextContent(element.props.children)
+    }
+    return ''
+  }
+
   const copyToClipboard = () => {
     if (children) {
       const textToCopy = removeSpaces
-        ? (children as string).replace(/\s/g, '')
-        : children.toString()
+        ? getTextContent(children).replace(/\s/g, '')
+        : getTextContent(children)
       navigator.clipboard.writeText(textToCopy)
       setCopySuccess(true)
       setTimeout(() => setCopySuccess(false), 1500)
