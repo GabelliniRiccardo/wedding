@@ -177,8 +177,4 @@ const Welcome = () => {
 
 export default Welcome
 
-export const Head: HeadFC = () => (
-  <head>
-    <title>Wedding Riccardo & Chiara</title>
-  </head>
-)
+export const Head: HeadFC = () => <title>Wedding Riccardo & Chiara</title>
