@@ -1,4 +1,4 @@
-// images-types.d.ts
+// types.ts
 
 declare module '*.jpeg' {
   const value: any
@@ -16,6 +16,11 @@ declare module '*.svg' {
 }
 
 declare module '*.gif' {
+  const value: any
+  export = value
+}
+
+declare module '*.mp3' {
   const value: any
   export = value
 }

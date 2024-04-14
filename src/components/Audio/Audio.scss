@@ -1,0 +1,13 @@
+.transparent-audio {
+  background: transparent; /* Set background to transparent */
+}
+
+.transparent-audio::-webkit-media-controls-panel {
+  background: transparent; /* Set controls panel background to transparent */
+}
+
+.transparent-audio::-webkit-media-controls-play-button,
+.transparent-audio::-webkit-media-controls-pause-button,
+.transparent-audio::-webkit-media-controls-volume-slider-thumb {
+  filter: invert(100%); /* Invert colors to make icons white */
+}

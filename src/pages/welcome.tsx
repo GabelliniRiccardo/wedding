@@ -10,6 +10,7 @@ import handToHand from '../images/photograph/hand_to_hand.jpg'
 import { type HeadFC, Link } from 'gatsby'
 import { Button } from '@mui/material'
 import { variants } from '../constants'
+import Audio from '../components/Audio/Audio'
 
 const writingSpeed = 20
 
@@ -92,6 +93,9 @@ const Welcome = () => {
             }}
           >
             <div className="absolute inset-0 bg-opacity-50 bg-white"></div>
+            <div className="absolute left-0 right-0 z-50 flex justify-center">
+              <Audio></Audio>
+            </div>
             <motion.div
               initial="hidden"
               animate="visible"

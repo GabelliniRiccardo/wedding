@@ -12,6 +12,7 @@ import { useLocation } from '@reach/router'
 import { Participant } from '../models/Participant'
 import { StaticImage } from 'gatsby-plugin-image'
 import moment from 'moment/moment'
+import Audio from '../components/Audio/Audio'
 
 const IndexPage: React.FC<PageProps> = () => {
   const whenAndWhereRef = useRef(null)
@@ -77,6 +78,9 @@ const IndexPage: React.FC<PageProps> = () => {
             <h2 className="text-2xl md:text-3xl font-medium">
               7 Settembre 2024
             </h2>
+            <div className="mt-20 flex justify-center">
+              <Audio></Audio>
+            </div>
           </div>
         </div>
       </motion.section>

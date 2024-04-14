@@ -45,6 +45,14 @@ const config: GatsbyConfig = {
       },
       __key: 'images',
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'audio',
+        path: './src/audio/',
+      },
+      __key: 'audio',
+    },
   ],
 }
 
