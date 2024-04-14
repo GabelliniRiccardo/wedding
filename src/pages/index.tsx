@@ -110,7 +110,7 @@ const IndexPage: React.FC<PageProps> = () => {
             loading="eager"
             src="../images/photograph/casquet_closed_eyes.jpg"
             alt="Couple"
-            className="w-full  rounded-full shadow-lg object-cover my-auto"
+            className="w-full rounded-full shadow-lg object-cover my-auto order-last md:order-none"
           />
 
           <motion.div
