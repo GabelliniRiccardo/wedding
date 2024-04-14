@@ -49,23 +49,12 @@ const IndexPage: React.FC<PageProps> = () => {
 
   return (
     <Layout showNavbar={true}>
-      <motion.section
-        className="h-screen relative"
-        style={{
-          position: 'relative', // Assicurati di impostare la posizione a relativa per far sì che l'immagine di sfondo sia allineata correttamente
-        }}
-      >
+      <motion.section className="h-screen relative">
         <StaticImage
           src="../images/photograph/sitting_hand_in_hand_closed_eyes.jpg"
           loading="eager"
           alt="Couple"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-          }}
+          className="absolute top-0 left-0 w-full h-full"
         />
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="text-center text-white">
