@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import type { HeadFC, PageProps } from 'gatsby'
 import Layout from '../components/Layout/Layout'
@@ -10,9 +10,6 @@ import RSVPForm from '../components/RSVPForm/RSVPForm'
 import queryString from 'query-string'
 import { useLocation } from '@reach/router'
 import { Participant } from '../models/Participant'
-import coupleImg from '../images/couple.jpg'
-import couple2Img from '../images/couple2.jpg'
-import couple3Img from '../images/couple3.jpg'
 import { StaticImage } from 'gatsby-plugin-image'
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -59,7 +56,7 @@ const IndexPage: React.FC<PageProps> = () => {
         }}
       >
         <StaticImage
-          src="../images/couple.jpg"
+          src="../images/photograph/sitting_hand_in_hand_closed_eyes.jpg"
           loading="eager"
           alt="Couple"
           style={{
@@ -102,7 +99,7 @@ const IndexPage: React.FC<PageProps> = () => {
           <div className="flex flex-col justify-items-center rounded-lg shadow-lg my-auto">
             <StaticImage
               loading="eager"
-              src="../images/couple2.jpg"
+              src="../images/photograph/watching_her_from_top.jpg"
               alt="First Wedding Image"
               className="rounded-t-md"
             />
@@ -111,9 +108,9 @@ const IndexPage: React.FC<PageProps> = () => {
 
           <StaticImage
             loading="eager"
-            src="../images/couple3.jpg"
+            src="../images/photograph/casquet_closed_eyes.jpg"
             alt="Couple"
-            className="w-full md:w-96 md:h-96 rounded-full shadow-lg object-cover my-auto"
+            className="w-full  rounded-full shadow-lg object-cover my-auto"
           />
 
           <motion.div

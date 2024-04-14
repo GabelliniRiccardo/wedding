@@ -6,7 +6,7 @@ import { TypeAnimation } from 'react-type-animation'
 import { ArrowDownwardSharp } from '@mui/icons-material'
 
 import rings from '../images/rings.jpg'
-import handToHand from '../images/hand-to-hand.jpeg'
+import handToHand from '../images/photograph/hand_to_hand.jpg'
 import { type HeadFC, Link } from 'gatsby'
 import { Button } from '@mui/material'
 import { variants } from '../constants'
@@ -130,7 +130,7 @@ const Welcome = () => {
             backgroundPosition: 'center',
           }}
         >
-          <div className="absolute inset-0 bg-opacity-50 bg-white"></div>
+          <div className="absolute inset-0 bg-opacity-25 bg-white"></div>
           <motion.div
             ref={weMarryElementRef}
             initial={{ opacity: 0 }}
