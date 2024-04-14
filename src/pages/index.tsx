@@ -11,6 +11,7 @@ import queryString from 'query-string'
 import { useLocation } from '@reach/router'
 import { Participant } from '../models/Participant'
 import { StaticImage } from 'gatsby-plugin-image'
+import moment from 'moment/moment'
 
 const IndexPage: React.FC<PageProps> = () => {
   const whenAndWhereRef = useRef(null)
@@ -92,7 +93,9 @@ const IndexPage: React.FC<PageProps> = () => {
               alt="First Wedding Image"
               className="rounded-t-md"
             />
-            <div className="p-4">07/04/2013 l'inizio....</div>
+            <div className="p-4 text-center">
+              ... {moment().year() - 2013} anni di relazione ...
+            </div>
           </div>
 
           <StaticImage
