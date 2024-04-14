@@ -143,7 +143,7 @@ const Welcome = () => {
             className="flex flex-col justify-center items-center min-h-screen w-full"
           >
             {isWeMarryInView && (
-              <div className="z-50 flex flex-col gap-40">
+              <div className="z-50 flex flex-col gap-40 text-white mb-36 md:mb-0">
                 <TypeAnimation
                   style={{
                     whiteSpace: 'pre-line',
@@ -164,7 +164,7 @@ const Welcome = () => {
                     color="primary"
                     size="large"
                     style={{
-                      fontSize: 33,
+                      fontSize: 25,
                     }}
                   >
                     Dettagli
