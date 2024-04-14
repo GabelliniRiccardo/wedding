@@ -16,12 +16,22 @@ import moment from 'moment/moment'
 const IndexPage: React.FC<PageProps> = () => {
   const whenAndWhereRef = useRef(null)
   const isWhenAndWhereInView = useInView(whenAndWhereRef, {
-    margin: '0px 0px -60% 0px',
+    margin: '0px 0px -40% 0px',
     once: true,
   })
   const howToGiveUsAPresentRef = useRef(null)
-  const isHowToGiveUsAPresentView = useInView(howToGiveUsAPresentRef, {
-    margin: '0px 0px -60% 0px',
+  const isHowToGiveUsAPresentInView = useInView(howToGiveUsAPresentRef, {
+    margin: '0px 0px -40% 0px',
+    once: true,
+  })
+  const watchingHerFromTopRef = useRef(null)
+  const isWatchingHerFromTopInView = useInView(watchingHerFromTopRef, {
+    margin: '0px 0px -40% 0px',
+    once: true,
+  })
+  const casquetclosedeyesRef = useRef(null)
+  const isCasquetClosedEyesRefInView = useInView(casquetclosedeyesRef, {
+    margin: '0px 0px -40% 0px',
     once: true,
   })
 
@@ -81,12 +91,21 @@ const IndexPage: React.FC<PageProps> = () => {
               opacity: isWhenAndWhereInView ? 1 : 0,
               x: isWhenAndWhereInView ? 0 : -100,
             }}
-            transition={{ duration: 2.5 }}
+            transition={{ duration: 1.5 }}
           >
             <WhenAndWhere />
           </motion.div>
 
-          <div className="flex flex-col justify-items-center rounded-lg shadow-lg my-auto">
+          <motion.div
+            className="flex flex-col justify-items-center rounded-lg shadow-lg my-auto"
+            ref={watchingHerFromTopRef}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{
+              opacity: isWatchingHerFromTopInView ? 1 : 0,
+              x: isWatchingHerFromTopInView ? 0 : 100,
+            }}
+            transition={{ duration: 1.5 }}
+          >
             <StaticImage
               loading="eager"
               src="../images/photograph/watching_her_from_top.jpg"
@@ -96,24 +115,34 @@ const IndexPage: React.FC<PageProps> = () => {
             <div className="p-4 text-center">
               ... {moment().year() - 2013} anni di relazione ...
             </div>
-          </div>
+          </motion.div>
 
-          <StaticImage
-            loading="eager"
-            src="../images/photograph/casquet_closed_eyes.jpg"
-            alt="Couple"
-            className="w-full rounded-full shadow-lg object-cover my-auto order-last md:order-none"
-          />
+          <motion.div
+            ref={casquetclosedeyesRef}
+            initial={{ opacity: 0, x: -100 }}
+            animate={{
+              opacity: isCasquetClosedEyesRefInView ? 1 : 0,
+              x: isCasquetClosedEyesRefInView ? 0 : -100,
+            }}
+            transition={{ duration: 1.5 }}
+          >
+            <StaticImage
+              loading="eager"
+              src="../images/photograph/casquet_closed_eyes.jpg"
+              alt="Couple"
+              className="w-full rounded-full shadow-lg object-cover my-auto order-last md:order-none"
+            />
+          </motion.div>
 
           <motion.div
             className="w-full"
             ref={howToGiveUsAPresentRef}
             initial={{ opacity: 0, x: 100 }}
             animate={{
-              opacity: isHowToGiveUsAPresentView ? 1 : 0,
-              x: isHowToGiveUsAPresentView ? 0 : 100,
+              opacity: isHowToGiveUsAPresentInView ? 1 : 0,
+              x: isHowToGiveUsAPresentInView ? 0 : 100,
             }}
-            transition={{ duration: 2.5 }}
+            transition={{ duration: 1.5 }}
           >
             <HowToGiveUsAPresent
               isSingleParticipant={participants.length === 1}
