@@ -19,25 +19,20 @@ const HowToGiveUsAPresent = ({
         {isSingleParticipant && (
           <div>
             <p>
-              Non è necessario un regalo, poiché ciò che conta davvero è la tua
-              <span className="font-bold"> preziosa</span> presenza.
-            </p>
-            <p>
-              Tuttavia, se desideri fare un pensiero, ecco le coordinate
-              bancarie per effettuare un bonifico:
+              Non c'è bisogno di un regalo, la tua
+              <span className="font-extrabold"> preziosa</span> presenza è il
+              dono più grande. Ma se desideri fare un pensiero, ecco le
+              coordinate bancarie per un eventuale contributo.
             </p>
           </div>
         )}
         {!isSingleParticipant && (
           <div>
             <p>
-              Non è necessario un regalo, poiché ciò che conta davvero è la
-              vostra
-              <span className="font-bold"> preziosa</span> presenza.
-            </p>
-            <p>
-              Tuttavia, se desiderate fare un pensiero, ecco le coordinate
-              bancarie per effettuare un bonifico:
+              Non c'è bisogno di un regalo, la vostra
+              <span className="font-extrabold"> preziosa</span> presenza è il
+              dono più grande. Ma se desiderate fare un pensiero, ecco le
+              coordinate bancarie per un eventuale contributo.
             </p>
           </div>
         )}
