@@ -8,25 +8,26 @@ const WhenAndWhere = () => {
     <Fragment>
       <div className="bg-green-400 bg-opacity-20 rounded-lg shadow-lg flex flex-col justify-between h-full w-full">
         <div className="p-6">
-          <h2
-            className="text-4xl font-bold mb-4 text-center text-gray-800"
-            id="when-and-where-section"
-          >
-            Dove e Quando
-          </h2>
-          <div className="flex flex-col space-y-4">
+          <h1 className="text-6xl font-bold mb-4 text-center text-green-900">
+            7 Settembre 2024
+          </h1>
+          <div className="flex flex-col space-y-4 text-green-800 text-xl">
             <div>
-              <p className="text-lg font-bold">Data e Ora:</p>
-              <p className="text-lg">7 settembre 2024, ore 14:00</p>
+              <p className="font-bold text-green-700">
+                Il matrimonio sarà celebrato presso:
+              </p>
+              <p className="text-green-900">Comune di San Giustino</p>
             </div>
             <div>
-              <p className="text-lg font-bold">Luogo:</p>
-              <p className="text-lg">Il Castiglione Agriturismo Bio</p>
+              <p className="font-bold text-green-700">
+                Dopo la cerimonia, ci sposteremo a:
+              </p>
+              <p className="text-green-900">Il Castiglione Agriturismo Bio</p>
             </div>
             <div className="flex flex-wrap justify-between">
               <div>
-                <p className="text-lg font-bold">Indirizzo:</p>
-                <p className="text-lg">
+                <p className="font-bold text-green-700">Indirizzo:</p>
+                <p className="text-green-900">
                   Via Basilica, 77, 52037 Sansepolcro AR
                 </p>
               </div>
