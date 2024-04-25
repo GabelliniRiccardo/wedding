@@ -8,7 +8,10 @@ const WhenAndWhere = () => {
     <Fragment>
       <div className="bg-green-400 bg-opacity-20 rounded-lg shadow-lg flex flex-col justify-between h-full w-full">
         <div className="p-6">
-          <h1 className="text-6xl font-bold mb-4 text-center text-green-900">
+          <h1
+            className="text-6xl font-bold mb-4 text-center text-green-900"
+            id="when-and-where-section"
+          >
             7 Settembre 2024
           </h1>
           <div className="flex flex-col space-y-4 text-green-800 text-xl">
