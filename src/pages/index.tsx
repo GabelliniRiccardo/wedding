@@ -117,7 +117,7 @@ const IndexPage: React.FC<PageProps> = () => {
               className="rounded-t-md"
             />
             <div className="p-4 text-center">
-              ... {moment().year() - 2013} anni di relazione ...
+              ... {moment().year() - 2013} anni insieme ...
             </div>
           </motion.div>
 
