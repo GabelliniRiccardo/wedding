@@ -29,7 +29,7 @@ const customTheme = createTheme({
 
 const menuItems = [
   { label: 'Dove e Quando', target: 'when-and-where-section' },
-  { label: 'Come darci un regalo', target: 'how-to-give-us-a-present-section' },
+  { label: 'Regalo', target: 'how-to-give-us-a-present-section' },
   { label: 'Conferma', target: 'confirm-presence-section' },
 ]
 

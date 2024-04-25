@@ -14,14 +14,14 @@ const HowToGiveUsAPresent = ({
           className="text-4xl font-bold mb-4 text-center"
           id="how-to-give-us-a-present-section"
         >
-          Come darci un regalo
+          Regalo
         </h2>
         {isSingleParticipant && (
           <div>
             <p>
-              Non c'è bisogno di un regalo, la tua
-              <span className="font-extrabold"> preziosa</span> presenza è il
-              dono più grande. Ma se desideri fare un pensiero, ecco le
+              La tua <span className="font-extrabold">presenza</span> è il dono
+              più grande per noi. Non sentirti obbligato a fare un regalo.
+              Tuttavia, se desideri davvero farci un pensiero, ecco le
               coordinate bancarie per un eventuale contributo.
             </p>
           </div>
@@ -29,9 +29,9 @@ const HowToGiveUsAPresent = ({
         {!isSingleParticipant && (
           <div>
             <p>
-              Non c'è bisogno di un regalo, la vostra
-              <span className="font-extrabold"> preziosa</span> presenza è il
-              dono più grande. Ma se desiderate fare un pensiero, ecco le
+              La vostra <span className="font-extrabold">presenza</span> è il
+              dono più grande per noi. Non sentitevi obbligati a fare un regalo.
+              Tuttavia, se desiderate davvero farci un pensiero, ecco le
               coordinate bancarie per un eventuale contributo.
             </p>
           </div>
