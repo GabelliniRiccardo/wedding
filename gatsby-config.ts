@@ -22,8 +22,8 @@ const config: GatsbyConfig = {
         defaultDataLayer: { platform: 'gatsby' },
 
         // Specify optional GTM environment details.
-        gtmAuth: process.env.GOOGLE_TAG_MANAGER_AUTH,
-        gtmPreview: process.env.GOOGLE_TAG_MANAGER_PREVIEW,
+        // gtmAuth: process.env.GOOGLE_TAG_MANAGER_AUTH,
+        // gtmPreview: process.env.GOOGLE_TAG_MANAGER_PREVIEW,
 
         // Defaults to false
         enableWebVitalsTracking: true,
