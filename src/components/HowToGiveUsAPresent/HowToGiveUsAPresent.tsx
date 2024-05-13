@@ -39,7 +39,7 @@ const HowToGiveUsAPresent = ({
 
         <div className="flex justify-between items-center">
           <p className="mt-8">
-            P.s. tutti ci campi in blu sono copiabili con un semplice click!
+            P.s. tutti i campi in blu sono copiabili con un semplice click!
           </p>
           <img src={gifImage} alt="GIF" className="max-w-24" />
         </div>
