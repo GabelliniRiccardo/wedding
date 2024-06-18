@@ -22,6 +22,12 @@ const WhenAndWhere = () => {
               <p className="text-green-900">Comune di San Giustino</p>
             </div>
             <div>
+              <p className="font-bold text-green-700">A che ora?</p>
+              <p className="text-green-900">
+                Ore: 15:30, puntuali sennò il 🐼 si arrabbia
+              </p>
+            </div>
+            <div>
               <p className="font-bold text-green-700">
                 Dopo la cerimonia, ci sposteremo a:
               </p>
